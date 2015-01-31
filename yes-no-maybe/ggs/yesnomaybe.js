@@ -567,7 +567,7 @@ function createTestTable(data) {
 
   var respondList = $('<ul />');
   for (var player in participants_) {
-    respondList.append(createParticipantElement(play, Answers.YES));
+    respondList.append(createParticipantElement(player, Answers.YES));
   }
   var ansCell = $('<td />')
       .append(respondList);
