@@ -588,13 +588,10 @@ function createTestTable(data) {
   var ansLink = $('<a />')
       .attr('href', '#')
       .text('Start Game')
-      .click(function() {
-        return false;
-      });
+      .click(ansLink);
   var ansBtn = $('<div />')
       .addClass('button')
-      .append(ansLink)
-      .click(startGame);
+      .append(ansLink);
       //.mousedown(onButtonMouseDown)
       //.mouseup(getButtonMouseUpHandler(ans));
 
