@@ -726,9 +726,16 @@ function createNight(data) {
       console.log(playerRole);
     if (myRole == ROLES.CIVILIAN) {
       if (playerRole == ROLES.CIVILIAN) {
-        var nextCiv = $('<li />')
-          .text('civilian: ?????');
-        respondList.append(nextCiv);          
+        if (myId == player.id) {
+          var nextCiv = $('<li />')
+            .text('civilian: you');
+          respondList.append(nextCiv);     
+        } else {
+          var nextCiv = $('<li />')
+            .text('civilian: ?????');
+          respondList.append(nextCiv);     
+        }
+     
       }
     } else if (myRole == ROLES.SPY) {
       if (playerRole == ROLES.SPY) {
@@ -834,7 +841,7 @@ function createParticipantElement(participant, response) {
       .text(statusText + ' ');
   if (participant.id === getUserHangoutId()) {
     var triggerLink = $('<a href="#" class="link" />')
-        .text(statusText ? 'Edit' : 'Set your status')
+        .text(/*statusText ? 'Edit' : 'Set your status'*/'')
         .click(function() {
           onSetStatus(this);
           return false;
