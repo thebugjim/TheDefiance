@@ -849,7 +849,7 @@ function createNight(data) {
       }
     }
     saveValue('state', STATES.DAY);
-  }, 15000);
+  }, 8000);
   timeouts[timer] = timer;
 
   return table;
@@ -940,7 +940,7 @@ function createDay(data) {
       }
     }
     saveValue('state', STATES.NIGHT);
-  }, 30000);
+  }, 8000);
   timeouts[timer] = timer;
 
   return table;
