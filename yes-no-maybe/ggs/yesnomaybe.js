@@ -618,7 +618,7 @@ function createTestTable(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    respondList.append(createParticipantElement(player, 'hid3'));
+    respondList.append(createParticipantElement(player, 'hi3'));
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -945,12 +945,14 @@ function createDay(data) {
     respondList.append(
       createParticipantElement(player, numVotes)
         .click((function(testId){
-          console.log('LYNCHVOTE CLICKED');
-          console.log('I AM');
-          console.log(myId);
-          console.log('VOTING FOR');
-          console.log(testId);
-          saveValue(makeUserKey(myId, 'lynchvote'), testId);
+          return function (ev) {
+            console.log('LYNCHVOTE CLICKED');
+            console.log('I AM');
+            console.log(myId);
+            console.log('VOTING FOR');
+            console.log(testId);
+            saveValue(makeUserKey(myId, 'lynchvote'), testId);
+          };
         })(player.id)));
         // .bind("click",(function(testId){
         //   console.log('LYNCHVOTE CLICKED');
