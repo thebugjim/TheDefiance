@@ -618,7 +618,7 @@ function createTestTable(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    respondList.append(createParticipantElement(player, 'hi'));
+    respondList.append(createParticipantElement(player, 'hi!'));
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -785,8 +785,10 @@ function createNight(data) {
         for (var j = 0, jLen = participants_.length; j < jLen; ++j)
         {
           var innerid = participants_[j].id;
-      console.log(getState(makeUserKey(innerid, 'killvote')).concat(" player.id"));
-      console.log(getState(makeUserKey(innerid, 'role')).concat(ROLES.SPY));
+      console.log(getState(makeUserKey(innerid, 'killvote')));
+      console.log(" player.id");
+      console.log(getState(makeUserKey(innerid, 'role')));
+      console.log(ROLES.SPY);
           if(getState(makeUserKey(innerid, 'role')) == ROLES.SPY &&
             getState(makeUserKey(innerid, 'killvote')) == player.id)
           {
@@ -877,8 +879,10 @@ function createDay(data) {
     for (var j = 0, jLen = participants_.length; j < jLen; ++j)
     {
       var innerid = participants_[j].id;
-      console.log(getState(makeUserKey(innerid, 'lynchvote')).concat(" player.id"));
-      console.log(getState(makeUserKey(innerid, 'role')).concat(ROLES.DEAD));
+      console.log(getState(makeUserKey(innerid, 'lynchvote')))
+      console.log(" player.id");
+      console.log(getState(makeUserKey(innerid, 'role')))
+      console.log(ROLES.DEAD);
       if(getState(makeUserKey(innerid, 'lynchvote')) == player.id
         && getState(makeUserKey(innerid, 'role')) != ROLES.DEAD)
       {
