@@ -907,6 +907,7 @@ function createDay(data) {
       }).append(deadRow, buttonRow);
 
   window.setTimeout(function() {
+    if (myRole != ROLES.SPY) return;
     var max = -1;
     for (var count in killVotes) {
       if (killVotes[count] > max) max = killVotes[count];
