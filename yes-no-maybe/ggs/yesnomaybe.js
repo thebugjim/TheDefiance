@@ -618,7 +618,7 @@ function createTestTable(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    respondList.append(createParticipantElement(player, 'hi'));
+    respondList.append(createParticipantElement(player, 'hi.'));
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -787,17 +787,25 @@ function createNight(data) {
         for (var j = 0, jLen = participants_.length; j < jLen; ++j)
         {
           var innerid = participants_[j].id;
-      console.log('SHOULD BE CIVILIAN');
+      // console.log('SHOULD BE CIVILIAN');
+      // console.log(player.id);
+      // console.log('MY ID IS');
+      // console.log(myId);
+      // console.log('ROLE OF INNER IS');
+      // console.log(getState(makeUserKey(innerid, 'role')));
+      // console.log(ROLES.SPY);
+      // console.log('IF SPY SPY, THE KILLVOTE IS');
+      // console.log(getState(makeUserKey(innerid, 'killvote')));
+      // console.log('SHOULD BE SAME AS');
+      // console.log(player.id);
+      console.log('THE PLAYER IN FOCUS IS');
       console.log(player.id);
-      console.log('MY ID IS');
-      console.log(myId);
+      console.log('LOOKING AT VOTE OF');
+      console.log(innerid);
       console.log('ROLE OF INNER IS');
       console.log(getState(makeUserKey(innerid, 'role')));
-      console.log(ROLES.SPY);
-      console.log('IF SPY SPY, THE KILLVOTE IS');
+      console.log('THE KILL VOTE IS');
       console.log(getState(makeUserKey(innerid, 'killvote')));
-      console.log('SHOULD BE SAME AS');
-      console.log(player.id);
       
           if(getState(makeUserKey(innerid, 'role')) === ROLES.SPY &&
             getState(makeUserKey(innerid, 'killvote')) === player.id)
