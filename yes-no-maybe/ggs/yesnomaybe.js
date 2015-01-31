@@ -735,7 +735,7 @@ function createNight(data) {
   var myRole = getState(makeUserKey(myId, 'role'));
 
   var title = '';
-  var nextlynched = getState.("nextlynched");
+  var nextlynched = getState("nextlynched");
   if (nextlynched === undefined) {
     title = myRole == ROLES.SPY ? "It's nighttime. Pick a civilian to kill." :
     "It's nighttime. Standby."
