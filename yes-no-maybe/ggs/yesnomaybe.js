@@ -388,7 +388,9 @@ function render() {
 
   container_
       .empty()
-      .append(createAnswersTable(data))
+      .append(createAnswersTable(data));
+
+  container_
       .append(tester);
 }
 
