@@ -805,13 +805,16 @@ function createNight(data) {
         respondList.append(
           createParticipantElement(player, numVotes)
             .click(function(){
-              saveValue(makeUserKey(myId, 'killvote'), player.id);
               console.log('KILLVOTE CLICKED');
+              saveValue(makeUserKey(myId, 'killvote'), player.id);
             }));
         killVotes[player.id] = numVotes;
       }
     }
   }
+
+  console.log('NIGHT FOR LOOPS END');
+
   var ansCell = $('<td />')
       .append(respondList);
 
@@ -876,7 +879,7 @@ function createDay(data) {
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     var playerRole = getState(makeUserKey(player.id, 'role'));
-    //if (playerRole == ROLES.DEAD) continue;
+    if (playerRole == ROLES.DEAD) continue;
     var numVotes = 0;
     for (var j = 0, jLen = participants_.length; j < jLen; ++j)
     {
