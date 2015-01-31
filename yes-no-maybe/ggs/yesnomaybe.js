@@ -561,12 +561,11 @@ function createTestTable(data) {
       onAnswer(ans);
     };
   };
-      console.log("firstLoop");
 
   for (var player in gapi.hangout.getParticipants()) {
     console.log("firstLoop");
     var tester = $('<div />')
-      .text(player.person.displayName);
+      .text('hi');
     console.log(player.person.displayName);
 
 
