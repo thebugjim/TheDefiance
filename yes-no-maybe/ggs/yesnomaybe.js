@@ -395,7 +395,7 @@ function render() {
   } else if (currentState == STATES.SPLASH) {
     container_
         .empty()
-        .append(createTestTable(data));
+        .append(createSplash(data));
   }
 
   // Sort by vote order.
@@ -655,9 +655,50 @@ function createTestTable(data) {
   return table;
 }
 
+function createSplash(data) {
+  var buttonRow = $('<tr />');
+
+  var myId = getUserHangoutId();
+
+  var respondList = $('<ul />');
+  for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
+    var player = participants_[i];
+    if (player.id == myId)
+      respondList.append(
+        createParticipantElement(
+          player, getState(
+            makeUserKey(myId, 'role'))));
+  }
+  var ansCell = $('<td />')
+      .append(respondList);
+
+  // var ansLink = $('<a />')
+  //     .attr('href', '#')
+  //     .text('Start Game')
+  //     .click(startGame);
+  // var ansBtn = $('<div />')
+  //     .addClass('button')
+  //     .append(ansLink);
+      //.mousedown(onButtonMouseDown)
+      //.mouseup(getButtonMouseUpHandler(ans));
+
+  buttonRow.append(ansCell);
+
+  var table = $('<table />')
+      .attr({
+        'cellspacing': '2',
+        'cellpadding': '0',
+        'summary': '',
+        'width': '100%'
+      }).append(buttonRow);
+
+
+  return table;
+}
+
 //test
 function startGame() {
-  var numSpies = spiesRemaining = participants_.length / 3;
+  var numSpies = spiesRemaining = Math.floor(participants_.length / 2);
   var numCivs = participants_.length - numSpies;
   console.log(participants_.length);
   console.log(numSpies);
@@ -673,7 +714,7 @@ function startGame() {
       role = ROLES.CIVILIAN;
       numCivs--;
     }
-    saveValue(makeUserKey(p.id, 'status'), role);
+    saveValue(makeUserKey(p.id, 'role'), role);
 
     // if (answer && data[answer]) {
     //   data[answer].push(p);
@@ -694,11 +735,8 @@ function startGame() {
     //   p.sortOrder = meta.timestamp;
     // }
   }
-
-  var tester = $('<p />')
-    .text('starting');
-  container_
-      .append(tester);
+  currentState = STATES.SPLASH;
+  render();
 }
 
 /**
