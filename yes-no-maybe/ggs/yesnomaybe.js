@@ -745,27 +745,26 @@ function createNight(data) {
       }
     } else if (myRole == ROLES.SPY) {
       if (playerRole == ROLES.CIVILIAN) {
+        var numVotes = 0;
         for (var j = 0, jLen = participants_.length; j < jLen; ++j)
         {
-          var numVotes = 0;
           var innerid = participants_[j].id;
           if(getState(makeUserKey(innerid, 'role')) == ROLES.SPY &&
             getState(makeUserKey(innerid, 'killvote')) == player.id)
           {
             numVotes++;
           }
-          respondList.append(
-            createParticipantElement(player, numVotes)
-              .click(function(){
-                saveValue(makeUserKey(myId, 'killvote'), player.id);
-              }));
 
           // respondList.append(
           //   createParticipantElement(player, numVotes).on("click",function(){
           //     saveValue(makeUserKey(myId, 'killvote'), player.id);
           //   }));
         }
-
+        respondList.append(
+          createParticipantElement(player, numVotes)
+            .click(function(){
+              saveValue(makeUserKey(myId, 'killvote'), player.id);
+            }));
       }
     }
   }
