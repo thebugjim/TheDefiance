@@ -39,9 +39,14 @@ DEFAULT_STATUS[Answers.NO] = 'No';
 DEFAULT_STATUS[Answers.MAYBE] = 'Maybe';
 
 var STATES = {
-  LOBBY: 'lobby'
+  LOBBY: 'lobby',
+  SPLASH: 'splash'
 };
 var currentState = STATES.LOBBY;
+var ROLES = {
+  CIVILIAN: 'civ',
+  SPY: 'spy'
+}
 var spiesRemaining;
 
 /**
@@ -384,7 +389,13 @@ function render() {
 
   //test
   if (currentState == STATES.LOBBY) {
-    //nothing really
+    container_
+        .empty()
+        .append(createTestTable(data));
+  } else if (currentState == STATES.SPLASH) {
+    container_
+        .empty()
+        .append(createTestTable(data));
   }
 
   // Sort by vote order.
@@ -401,9 +412,7 @@ function render() {
   //     .empty()
   //     .append(createAnswersTable(data));
 
-  container_
-      .empty()
-      .append(createTestTable(data));
+
 }
 
 /**
@@ -650,15 +659,14 @@ function createTestTable(data) {
 function startGame() {
   var numSpies = spiesRemaining = participants_.length / 3;
   var numCivs = participants_.length - numSpies;
-  for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
-    // var p = participants_[i];
-    // // Temporary id, corresponds to getUserHangoutId().
-    // var answerKey = makeUserKey(p.id, 'answer');
-    // var answer = getState(answerKey);
-    // var meta = getMetadata(answerKey);
-
-    // // test
-
+  var shuffled_ = shuffle(participants_);
+  for (var i = 0, iLen = shuffled_.length; i < iLen; ++i) {
+    var p = shuffled_[i];
+    var role;
+    if (numSpies > 0) {
+      role = ROLES.SPY;
+    }
+    saveValue(makeUserKey(p.id, 'status'), role);
 
     // if (answer && data[answer]) {
     //   data[answer].push(p);
@@ -683,7 +691,6 @@ function startGame() {
   var tester = $('<p />')
     .text('starting');
   container_
-      .empty()
       .append(tester);
 }
 
@@ -760,3 +767,23 @@ function createParticipantElement(participant, response) {
     gapi.hangout.onApiReady.add(initHangout);
   }
 })();
+
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex ;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
