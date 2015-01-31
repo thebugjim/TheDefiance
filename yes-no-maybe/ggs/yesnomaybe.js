@@ -785,12 +785,12 @@ function createNight(data) {
         for (var j = 0, jLen = participants_.length; j < jLen; ++j)
         {
           var innerid = participants_[j].id;
-          console(innerid.concat(myId));
+          console.log(innerid.concat(myId));
           if(getState(makeUserKey(innerid, 'role')) == ROLES.SPY &&
             getState(makeUserKey(innerid, 'killvote')) == player.id)
           {
             numVotes++;
-            console('click12');
+            console.log('click12');
           }
 
           // respondList.append(
@@ -876,7 +876,7 @@ function createDay(data) {
     for (var j = 0, jLen = participants_.length; j < jLen; ++j)
     {
       var innerid = participants_[j].id;
-      console(innerid.concat(myId));
+      console.log(innerid.concat(myId));
       if(getState(makeUserKey(innerid, 'lynchvote')) == player.id
         && getState(makeUserKey(innerid, 'role')) != ROLES.DEAD)
       {
