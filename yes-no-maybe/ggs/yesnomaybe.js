@@ -348,6 +348,8 @@ function render() {
     return;
   }
 
+  currentState = getState('state');
+
   var data = {
     total: 0,
     responded: false
@@ -365,7 +367,6 @@ function render() {
     var meta = getMetadata(answerKey);
 
     // test
-
 
     if (answer && data[answer]) {
       data[answer].push(p);
@@ -805,8 +806,7 @@ function createParticipantElement(participant, response) {
             updateLocalParticipantsData(initParticipants);
           }
         }
-        currentState = getState('state');
-        render();
+
 
         gapi.hangout.onApiReady.remove(initHangout);
       }
