@@ -40,7 +40,8 @@ DEFAULT_STATUS[Answers.MAYBE] = 'Maybe';
 
 var STATES = {
   LOBBY: 'lobby',
-  SPLASH: 'splash'
+  SPLASH: 'splash',
+  NIGHT: 'night'
 };
 var currentState = STATES.LOBBY;
 var ROLES = {
@@ -401,6 +402,9 @@ function render() {
     container_
         .empty()
         .append(createSplash(data));
+  } else if (currentState == STATES.NIGHT) {
+    container_
+        .empty();
   }
 
   // Sort by vote order.
@@ -697,6 +701,7 @@ function createSplash(data) {
         'width': '100%'
       }).append(buttonRow);
 
+  window.setTimeout(saveValue('state', STATES.NIGHT), 10*1000);
 
   return table;
 }
