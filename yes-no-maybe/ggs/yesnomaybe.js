@@ -350,10 +350,9 @@ function render() {
 
   var cloudState = getState('state');
   if (cloudState === undefined) {
-    saveValue('state', currentState);
-  } else {
-    currentState = getState('state');
+    saveValue('state', STATES.LOBBY);
   }
+  currentState = getState('state');
 
   var data = {
     total: 0,
