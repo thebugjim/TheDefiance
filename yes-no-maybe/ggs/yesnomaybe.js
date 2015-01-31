@@ -885,6 +885,7 @@ function createDay(data) {
 
   var respondList = $('<ul />');
   var lynchVotes = [];
+  consle.log('DAY FOR LOOPS STARTED');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     var playerRole = getState(makeUserKey(player.id, 'role'));
@@ -897,12 +898,20 @@ function createDay(data) {
       console.log(player.id);
       console.log(getState(makeUserKey(innerid, 'role')))
       console.log(ROLES.DEAD);*/
+      console.log('THE PLAYER IN FOCUS IS');
+      console.log(player.id);
+      console.log('LOOKING AT VOTE OF');
+      console.log(innerid);
+      console.log('ROLE OF INNER IS');
+      console.log(getState(makeUserKey(innerid, 'role')));
+      console.log('THE LYNCH VOTE IS');
+      console.log(getState(makeUserKey(innerid, 'lynchvote')));
       
       if(getState(makeUserKey(innerid, 'lynchvote')) == player.id
         && getState(makeUserKey(innerid, 'role')) != ROLES.DEAD)
       {
         numVotes++;
-        console.log('NUMVOTES INCREASED');
+        console.log('LYNCHNUMVOTES INCREASED');
       }
 
       // respondList.append(
@@ -913,8 +922,8 @@ function createDay(data) {
     respondList.append(
       createParticipantElement(player, numVotes)
         .click(function(){
-          saveValue(makeUserKey(myId, 'lynchvote'), player.id);
           console.log('LYNCHVOTE CLICKED');
+          saveValue(makeUserKey(myId, 'lynchvote'), player.id);
         }));
     lynchVotes[player.id] = numVotes;
   }
