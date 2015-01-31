@@ -832,7 +832,7 @@ function createDay(data) {
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     if (player.id == getState('nextdead')) {
-      deadString = player.person.displayName.concat(" died last night.");
+      deadString = player.person.displayName.concat(" died last night. Vote to lynch.");
     }
   }
   var deadRow = createTitleRow(deadString);
@@ -842,51 +842,30 @@ function createDay(data) {
   var myRole = getState(makeUserKey(myId, 'role'));
 
   var respondList = $('<ul />');
-  var killVotes = [];
+  var lynchVotes = [];
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     var playerRole = getState(makeUserKey(player.id, 'role'));
-    if (myRole == ROLES.CIVILIAN) {
-      if (playerRole == ROLES.CIVILIAN) {
-        if (myId == player.id) {
-          var nextCiv = $('<li />')
-            .text('civilian: you');
-          respondList.append(nextCiv);     
-        } else {
-          var nextCiv = $('<li />')
-            .text('civilian: ?????');
-          respondList.append(nextCiv);     
-        }
-      } else if (playerRole == ROLES.SPY) {
-        var nextCiv = $('<li />')
-          .text('spy: ?????');
-        respondList.append(nextCiv);
+    var numVotes = 0;
+    for (var j = 0, jLen = participants_.length; j < jLen; ++j)
+    {
+      var innerid = participants_[j].id;
+      if(getState(makeUserKey(innerid, 'lynchvote')) == player.id)
+      {
+        numVotes++;
       }
-    } else if (myRole == ROLES.SPY) {
-      if (playerRole == ROLES.CIVILIAN) {
-        var numVotes = 0;
-        for (var j = 0, jLen = participants_.length; j < jLen; ++j)
-        {
-          var innerid = participants_[j].id;
-          if(getState(makeUserKey(innerid, 'role')) == ROLES.SPY &&
-            getState(makeUserKey(innerid, 'killvote')) == player.id)
-          {
-            numVotes++;
-          }
 
-          // respondList.append(
-          //   createParticipantElement(player, numVotes).on("click",function(){
-          //     saveValue(makeUserKey(myId, 'killvote'), player.id);
-          //   }));
-        }
-        respondList.append(
-          createParticipantElement(player, numVotes)
-            .click(function(){
-              saveValue(makeUserKey(myId, 'killvote'), player.id);
-            }));
-        killVotes[player.id] = numVotes;
-      }
+      // respondList.append(
+      //   createParticipantElement(player, numVotes).on("click",function(){
+      //     saveValue(makeUserKey(myId, 'lynchvote'), player.id);
+      //   }));
     }
+    respondList.append(
+      createParticipantElement(player, numVotes)
+        .click(function(){
+          saveValue(makeUserKey(myId, 'lynchvote'), player.id);
+        }));
+    lynchVotes[player.id] = numVotes;
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -911,20 +890,20 @@ function createDay(data) {
         'width': '100%'
       }).append(deadRow, buttonRow);
 
-  // window.setTimeout(function() {
-  //   if (myRole != ROLES.SPY) return;
-  //   var max = -1;
-  //   for (var count in killVotes) {
-  //     if (killVotes[count] > max) max = killVotes[count];
-  //   }
-  //   for (var count in killVotes) {
-  //     if (killVotes[count] == max) {
-  //       saveValue('nextdead', count);
-  //       break;
-  //     }
-  //   }
-  //   saveValue('state', STATES.DAY);
-  // }, 15000);
+  window.setTimeout(function() {
+    if (myRole != ROLES.SPY) return;
+    var max = -1;
+    for (var count in lynchVotes) {
+      if (lynchVotes[count] > max) max = lynchVotes[count];
+    }
+    for (var count in lynchVotes) {
+      if (lynchVotes[count] == max) {
+        saveValue('nextdead', count);
+        break;
+      }
+    }
+    saveValue('state', STATES.DAY);
+  }, 60000);
 
   return table;
 }
