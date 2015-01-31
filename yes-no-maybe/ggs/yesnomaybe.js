@@ -789,6 +789,7 @@ function createNight(data) {
             getState(makeUserKey(innerid, 'killvote')) == player.id)
           {
             numVotes++;
+            console('click12');
           }
 
           // respondList.append(
@@ -878,6 +879,7 @@ function createDay(data) {
         && getState(makeUserKey(innerid, 'role')) != ROLES.DEAD)
       {
         numVotes++;
+        console.log('click22');
       }
 
       // respondList.append(
