@@ -745,6 +745,7 @@ function createNight(data) {
       if (player.id == nextlynched) {
         title = player.person.displayName.concat(" was lynched. It's nighttime.");
       }
+    }
   }
   var titleRow = createTitleRow(title);
 
