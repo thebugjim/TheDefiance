@@ -593,7 +593,7 @@ function createTestTable(data) {
       });
   var ansBtn = $('<div />')
       .addClass('button')
-      .append(ansLink);
+      .append(ansLink)
       .click(startGame);
       //.mousedown(onButtonMouseDown)
       //.mouseup(getButtonMouseUpHandler(ans));
