@@ -883,12 +883,13 @@ function createDay(data) {
       console.log(player.id);
       console.log(getState(makeUserKey(innerid, 'role')))
       console.log(ROLES.DEAD);*/
-      if(getStater(makeUserKey(innerid, 'roler')) == ROLES.SPY)
+      if(getState(makeUserKey(innerid, 'role')) == ROLES.SPY)
       {
-        console.log(player.id);
+      console.log(player.id);
       console.log('CHECKING THE KILLVOTE THING')
       console.log(getState(makeUserKey(innerid, 'killvote')));
       }
+
       if(getState(makeUserKey(innerid, 'lynchvote')) == player.id
         && getState(makeUserKey(innerid, 'role')) != ROLES.DEAD)
       {
