@@ -618,7 +618,7 @@ function createTestTable(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    respondList.append(createParticipantElement(player, 'hi9'));
+    respondList.append(createParticipantElement(player, 'hi9e'));
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -821,22 +821,22 @@ function createNight(data) {
         }
         respondList.append(
           createParticipantElement(player, numVotes)
-            // .click(function(){
-            //   console.log('KILLVOTE CLICKED');
-            //   console.log('I AM');
-            //   console.log(myId);
-            //   console.log('VOTING FOR');
-            //   console.log(player.id);
-            //   saveValue(makeUserKey(myId, 'killvote'), player.id);
-            // });
-            .bind("click",(function(testId){
+            .click((function(testId){
               console.log('KILLVOTE CLICKED');
               console.log('I AM');
               console.log(myId);
               console.log('VOTING FOR');
               console.log(testId);
               saveValue(makeUserKey(myId, 'killvote'), testId);
-            })(player.id)));
+            })(player.id));
+            // .bind("click",(function(testId){
+            //   console.log('KILLVOTE CLICKED');
+            //   console.log('I AM');
+            //   console.log(myId);
+            //   console.log('VOTING FOR');
+            //   console.log(testId);
+            //   saveValue(makeUserKey(myId, 'killvote'), testId);
+            // })(player.id)));
         killVotes[player.id] = numVotes;
       }
     }
@@ -942,22 +942,22 @@ function createDay(data) {
     }
     respondList.append(
       createParticipantElement(player, numVotes)
-        // .click(function(){
-        //   console.log('LYNCHVOTE CLICKED');
-        //   console.log('SAVING LYNCHVOTE OF');
-        //   console.log(myId);
-        //   console.log('AS');
-        //   console.log(player.id);
-        //   saveValue(makeUserKey(myId, 'lynchvote'), player.id);
-        // })());
-        .bind("click",(function(testId){
+        .click((function(testId){
           console.log('LYNCHVOTE CLICKED');
           console.log('I AM');
           console.log(myId);
           console.log('VOTING FOR');
           console.log(testId);
           saveValue(makeUserKey(myId, 'lynchvote'), testId);
-        })(player.id)));
+        })(player.id));
+        // .bind("click",(function(testId){
+        //   console.log('LYNCHVOTE CLICKED');
+        //   console.log('I AM');
+        //   console.log(myId);
+        //   console.log('VOTING FOR');
+        //   console.log(testId);
+        //   saveValue(makeUserKey(myId, 'lynchvote'), testId);
+        // })(player.id)));
     lynchVotes[player.id] = numVotes;
   }
   var ansCell = $('<td />')
