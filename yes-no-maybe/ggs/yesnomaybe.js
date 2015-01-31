@@ -383,9 +383,13 @@ function render() {
     }
   }
 
+  //test
+  var tester = $('<input />');
+
   container_
       .empty()
-      .append(createAnswersTable(data));
+      .append(createAnswersTable(data))
+      .append(tester);
 }
 
 /**

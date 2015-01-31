@@ -24,7 +24,10 @@
   <script type="text/javascript">google.load("jquery", "1.3.2");</script>
   <script type="text/javascript"
       src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
-  <script type="text/javascript" src="//thebugjim.github.io/TheDefiance/yes-no-maybe/ggs/yesnomaybe.js"></script>
+
+  <!-- <script type="text/javascript" src="//thebugjim.github.io/TheDefiance/yes-no-maybe/ggs/yesnomaybe.js"></script> -->
+
+  <script type="text/javascript" src="file:///C:/Users/Subrahmanyam/Documents/Development/TheDefiance/yes-no-maybe/static/yesnomaybe>
 
   <link type="text/css" rel="stylesheet"
       href="//hangoutsapi.appspot.com/static/yesnomaybe/yesnomaybe.css" />
