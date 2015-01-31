@@ -618,7 +618,7 @@ function createTestTable(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    respondList.append(createParticipantElement(player, 'hi?'));
+    respondList.append(createParticipantElement(player, 'hi+'));
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -821,14 +821,22 @@ function createNight(data) {
         }
         respondList.append(
           createParticipantElement(player, numVotes)
-            .click(function(){
+            // .click(function(){
+            //   console.log('KILLVOTE CLICKED');
+            //   console.log('I AM');
+            //   console.log(myId);
+            //   console.log('VOTING FOR');
+            //   console.log(player.id);
+            //   saveValue(makeUserKey(myId, 'killvote'), player.id);
+            // });
+            .bind("click",(function(){
               console.log('KILLVOTE CLICKED');
               console.log('I AM');
               console.log(myId);
               console.log('VOTING FOR');
               console.log(player.id);
               saveValue(makeUserKey(myId, 'killvote'), player.id);
-            })());
+            })(player.id));
         killVotes[player.id] = numVotes;
       }
     }
@@ -934,14 +942,22 @@ function createDay(data) {
     }
     respondList.append(
       createParticipantElement(player, numVotes)
-        .click(function(){
+        // .click(function(){
+        //   console.log('LYNCHVOTE CLICKED');
+        //   console.log('SAVING LYNCHVOTE OF');
+        //   console.log(myId);
+        //   console.log('AS');
+        //   console.log(player.id);
+        //   saveValue(makeUserKey(myId, 'lynchvote'), player.id);
+        // })());
+        .bind("click",(function(){
           console.log('LYNCHVOTE CLICKED');
-          console.log('SAVING LYNCHVOTE OF');
+          console.log('I AM');
           console.log(myId);
-          console.log('AS');
+          console.log('VOTING FOR');
           console.log(player.id);
           saveValue(makeUserKey(myId, 'lynchvote'), player.id);
-        })());
+        })(player.id));
     lynchVotes[player.id] = numVotes;
   }
   var ansCell = $('<td />')
