@@ -714,11 +714,16 @@ function createNight(data) {
 
   var myId = getUserHangoutId();
   var myRole = getState(makeUserKey(myId, 'role'));
+  console.log('myId');
+  console.log(myId);
+  console.log('myRole');
+  console.log(myRole);
 
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     var playerRole = getState(makeUserKey(player.id));
+      console.log(playerRole);
     if (myRole == ROLES.CIVILIAN) {
       if (playerRole == ROLES.CIVILIAN) {
         var nextCiv = $('<li />')
