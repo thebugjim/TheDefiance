@@ -722,7 +722,7 @@ function createNight(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    var playerRole = getState(makeUserKey(player.id));
+    var playerRole = getState(makeUserKey(player.id, 'role'));
       console.log(playerRole);
     if (myRole == ROLES.CIVILIAN) {
       if (playerRole == ROLES.CIVILIAN) {
