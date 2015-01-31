@@ -665,6 +665,10 @@ function startGame() {
     var role;
     if (numSpies > 0) {
       role = ROLES.SPY;
+      numSpies--;
+    } else {
+      role = ROLES.CIVILIAN;
+      numCivs--;
     }
     saveValue(makeUserKey(p.id, 'status'), role);
 
