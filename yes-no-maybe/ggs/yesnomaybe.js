@@ -734,8 +734,18 @@ function createNight(data) {
   var myId = getUserHangoutId();
   var myRole = getState(makeUserKey(myId, 'role'));
 
-  var title = myRole == ROLES.SPY ? "It's nighttime. Pick a civilian to kill." :
-  "It's nighttime. Standby."
+  var title;
+  var nextlynched = getState.("nextlynched");
+  if (nextlynched === undefined) {
+    title = myRole == ROLES.SPY ? "It's nighttime. Pick a civilian to kill." :
+    "It's nighttime. Standby."
+  } else {
+    for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
+      var player = participants_[i];
+      if (player.id == nextlynched) {
+        title = player.person.displayName.concat(" was lynched. It's nighttime.");
+      }
+  }
   var titleRow = createTitleRow(title);
 
   var respondList = $('<ul />');
@@ -846,6 +856,7 @@ function createDay(data) {
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     var playerRole = getState(makeUserKey(player.id, 'role'));
+    if (playerRole == ROLES.DEAD) continue;
     var numVotes = 0;
     for (var j = 0, jLen = participants_.length; j < jLen; ++j)
     {
@@ -898,11 +909,11 @@ function createDay(data) {
     }
     for (var count in lynchVotes) {
       if (lynchVotes[count] == max) {
-        saveValue('nextdead', count);
+        saveValue('nextlynched', count);
         break;
       }
     }
-    saveValue('state', STATES.DAY);
+    saveValue('state', STATES.NIGHT);
   }, 60000);
 
   return table;
