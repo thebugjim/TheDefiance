@@ -738,6 +738,7 @@ function createSplash(data) {
 }
 
 function createNight(data) {
+  console.log('NIGHT FUNCTION STARTED');
   var buttonRow = $('<tr />');
 
   var myId = getUserHangoutId();
@@ -793,7 +794,7 @@ function createNight(data) {
             getState(makeUserKey(innerid, 'killvote')) == player.id)
           {
             numVotes++;
-            console.log('click12');
+            console.log('NUMVOTES INCREASED');
           }
 
           // respondList.append(
@@ -805,7 +806,7 @@ function createNight(data) {
           createParticipantElement(player, numVotes)
             .click(function(){
               saveValue(makeUserKey(myId, 'killvote'), player.id);
-              console.log('click1');
+              console.log('KILLVOTE CLICKED');
             }));
         killVotes[player.id] = numVotes;
       }
@@ -848,15 +849,15 @@ function createNight(data) {
         break;
       }
     }
-    removeValue('state');
     saveValue('state', STATES.DAY);
-  }, 8000);
+  }, 10000);
   timeouts[timer] = timer;
 
   return table;
 }
 
 function createDay(data) {
+  console.log('DAY STARTED');
   var deadString;
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
@@ -884,18 +885,12 @@ function createDay(data) {
       console.log(player.id);
       console.log(getState(makeUserKey(innerid, 'role')))
       console.log(ROLES.DEAD);*/
-      if(getState(makeUserKey(innerid, 'role')) == ROLES.SPY)
-      {
-      console.log(player.id);
-      console.log('CHECKING THE KILLVOTE THING')
-      console.log(getState(makeUserKey(innerid, 'killvote')));
-      }
-
+      
       if(getState(makeUserKey(innerid, 'lynchvote')) == player.id
         && getState(makeUserKey(innerid, 'role')) != ROLES.DEAD)
       {
         numVotes++;
-        console.log('click22');
+        console.log('NUMVOTES INCREASED');
       }
 
       // respondList.append(
@@ -907,7 +902,7 @@ function createDay(data) {
       createParticipantElement(player, numVotes)
         .click(function(){
           saveValue(makeUserKey(myId, 'lynchvote'), player.id);
-          console.log('click2');
+          console.log('LYNCHVOTE CLICKED');
         }));
     lynchVotes[player.id] = numVotes;
   }
