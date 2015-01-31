@@ -412,7 +412,7 @@ function updateLocalParticipantsData(participants) {
   render();
 }
 
-/**
+/***
  * Create required DOM elements and listeners.
  */
 function prepareAppDOM() {
