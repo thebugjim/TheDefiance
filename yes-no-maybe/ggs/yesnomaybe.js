@@ -757,10 +757,9 @@ function createNight(data) {
 
         }
         respondList.append(
-          createParticipantElement(player, numVotes)
-            .on("click",function(){
-              saveValue(makeUserKey(myId, 'killvote'), player.id)
-            }));
+          createParticipantElement(player, numVotes).on("click",function(){
+            saveValue(makeUserKey(myId, 'killvote'), player.id);
+          }));
       }
     }
   }
