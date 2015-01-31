@@ -660,6 +660,7 @@ function startGame() {
   var numSpies = spiesRemaining = participants_.length / 3;
   var numCivs = participants_.length - numSpies;
   console.log(participants_.length);
+  console.log(numSpies);
   console.log("length");
   var shuffled_ = shuffle(participants_);
   for (var i = 0, iLen = shuffled_.length; i < iLen; ++i) {
