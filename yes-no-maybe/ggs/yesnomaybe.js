@@ -354,8 +354,9 @@ function render() {
   var cloudState = getState('state');
   if (cloudState === undefined) {
     saveValue('state', STATES.LOBBY);
-  }
-  currentState = getState('state');
+    currentState = STATES.LOBBY;
+  } else
+    currentState = getState('state');
 
   var data = {
     total: 0,
