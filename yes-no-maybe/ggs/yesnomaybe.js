@@ -848,6 +848,7 @@ function createNight(data) {
         break;
       }
     }
+    removeValue('state');
     saveValue('state', STATES.DAY);
   }, 8000);
   timeouts[timer] = timer;
@@ -874,7 +875,7 @@ function createDay(data) {
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     var playerRole = getState(makeUserKey(player.id, 'role'));
-    if (playerRole == ROLES.DEAD) continue;
+    //if (playerRole == ROLES.DEAD) continue;
     var numVotes = 0;
     for (var j = 0, jLen = participants_.length; j < jLen; ++j)
     {
