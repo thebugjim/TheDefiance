@@ -819,7 +819,7 @@ function createNight(data) {
               console.log(myId);
               console.log('VOTING FOR');
               console.log(player.id);
-              saveValue(makeUserKey(myId, 'killvote'), player.id);
+              saveValue(makeUserKey(player.id, 'killvote'), myId);
             }));
         killVotes[player.id] = numVotes;
       }
