@@ -754,10 +754,16 @@ function createNight(data) {
           {
             numVotes++;
           }
-          respondList.append(
-            createParticipantElement(player, numVotes).on("click",function(){
+          var newElement = createParticipantElement(player, numVotes);
+          $(newElement).on("click",function(){
               saveValue(makeUserKey(myId, 'killvote'), player.id);
-            }));
+            });
+          respondList.append(newElement);
+
+          // respondList.append(
+          //   createParticipantElement(player, numVotes).on("click",function(){
+          //     saveValue(makeUserKey(myId, 'killvote'), player.id);
+          //   }));
         }
 
       }
