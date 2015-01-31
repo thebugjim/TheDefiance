@@ -41,12 +41,14 @@ DEFAULT_STATUS[Answers.MAYBE] = 'Maybe';
 var STATES = {
   LOBBY: 'lobby',
   SPLASH: 'splash',
-  NIGHT: 'night'
+  NIGHT: 'night',
+  DAY: 'day'
 };
 var currentState = STATES.LOBBY;
 var ROLES = {
   CIVILIAN: 'civ',
-  SPY: 'spy'
+  SPY: 'spy',
+  DEAD: 'ded'
 }
 var spiesRemaining;
 
@@ -724,6 +726,7 @@ function createNight(data) {
   var myRole = getState(makeUserKey(myId, 'role'));
 
   var respondList = $('<ul />');
+  var killVotes = [];
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     var playerRole = getState(makeUserKey(player.id, 'role'));
@@ -765,6 +768,7 @@ function createNight(data) {
             .click(function(){
               saveValue(makeUserKey(myId, 'killvote'), player.id);
             }));
+        killVotes[player.id] = numVotes;
       }
     }
   }
@@ -790,6 +794,14 @@ function createNight(data) {
         'summary': '',
         'width': '100%'
       }).append(buttonRow);
+
+  window.setTimeout(function() {
+    var max = -1;
+    for (var count in killVotes) {
+      console.log(count);
+    }
+    saveValue('state', STATES.DAY);
+  }, 15000);
 
   return table;
 }
