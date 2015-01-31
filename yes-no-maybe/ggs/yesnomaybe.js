@@ -348,8 +348,12 @@ function render() {
     return;
   }
 
-  console.log(getState('state'));
-  currentState = getState('state');
+  var cloudState = getState('state');
+  if (cloudState === undefined) {
+    saveValue('state', currentState);
+  } else {
+    currentState = getState('state');
+  }
 
   var data = {
     total: 0,
