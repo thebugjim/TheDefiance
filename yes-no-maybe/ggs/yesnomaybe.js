@@ -800,6 +800,7 @@ function createNight(data) {
           createParticipantElement(player, numVotes)
             .click(function(){
               saveValue(makeUserKey(myId, 'killvote'), player.id);
+              console.log('click1');
             }));
         killVotes[player.id] = numVotes;
       }
@@ -888,6 +889,7 @@ function createDay(data) {
       createParticipantElement(player, numVotes)
         .click(function(){
           saveValue(makeUserKey(myId, 'lynchvote'), player.id);
+          console.log('click2');
         }));
     lynchVotes[player.id] = numVotes;
   }
