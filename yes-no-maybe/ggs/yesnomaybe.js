@@ -815,6 +815,10 @@ function createNight(data) {
           createParticipantElement(player, numVotes)
             .click(function(){
               console.log('KILLVOTE CLICKED');
+              console.log('I AM');
+              console.log(myId);
+              console.log('VOTING FOR');
+              console.log(player.id);
               saveValue(makeUserKey(myId, 'killvote'), player.id);
             }));
         killVotes[player.id] = numVotes;
@@ -885,7 +889,7 @@ function createDay(data) {
 
   var respondList = $('<ul />');
   var lynchVotes = [];
-  consle.log('DAY FOR LOOPS STARTED');
+  console.log('DAY FOR LOOPS STARTED');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     var playerRole = getState(makeUserKey(player.id, 'role'));
