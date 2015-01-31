@@ -408,6 +408,9 @@ function render() {
     container_
         .empty()
         .append(createNight(data));
+  } else if (currentState == STATES.DAY) {
+    container_
+        .empty();
   }
 
   // Sort by vote order.
@@ -798,7 +801,7 @@ function createNight(data) {
   window.setTimeout(function() {
     var max = -1;
     for (var count in killVotes) {
-      console.log(count);
+      console.log(killVotes[count]);
     }
     saveValue('state', STATES.DAY);
   }, 15000);
