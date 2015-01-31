@@ -38,6 +38,11 @@ DEFAULT_STATUS[Answers.YES] = 'Yes';
 DEFAULT_STATUS[Answers.NO] = 'No';
 DEFAULT_STATUS[Answers.MAYBE] = 'Maybe';
 
+var STATES = {
+  LOBBY = 'lobby';
+}
+var currentState = STATES.LOBBY;
+
 /**
  * The maximum length allowed for user status.
  * @const
@@ -376,6 +381,11 @@ function render() {
     }
   }
 
+  //test
+  if (currentState == STATES.LOBBY) {
+    //nothing really
+  }
+
   // Sort by vote order.
   var sortFunc = function(a, b) {
     return a.sortOrder - b.sortOrder;
@@ -386,11 +396,12 @@ function render() {
     }
   }
 
-  container_
-      .empty()
-      .append(createAnswersTable(data));
+  // container_
+  //     .empty()
+  //     .append(createAnswersTable(data));
 
   container_
+      .empty()
       .append(createTestTable(data));
 }
 
@@ -572,7 +583,20 @@ function createTestTable(data) {
   }
   var ansCell = $('<td />')
       .append(respondList);
-  buttonRow.append(ansCell);
+
+  var ansLink = $('<a />')
+      .attr('href', '#')
+      .text('Start Game')
+      .click(function() {
+        return false;
+      });
+  var ansBtn = $('<div />')
+      .addClass('button')
+      .append(ansLink);
+      //.mousedown(onButtonMouseDown)
+      //.mouseup(getButtonMouseUpHandler(ans));
+
+  buttonRow.append(ansCell, ansBtn);
 
   // // Create buttons for each possible response.
   // for (var key in Answers) {
@@ -601,24 +625,24 @@ function createTestTable(data) {
         'width': '100%'
       }).append(buttonRow);
 
-  if (!data.responded) {
-    var instructImg = $('<img />')
-        .attr({
-          'src': '//hangoutsapi.appspot.com/static/yesnomaybe/directions.png',
-          'title': 'Make a selection'
-        });
-    var instructText = $('<div />')
-        .text('Click an option to cast your vote');
-    var footDiv = $('<div />').append(instructImg, instructText);
-    var footCell = $('<td colspan="3" />')
-        .append(footDiv);
-    var footRow = $('<tr />')
-        .attr('id', 'footer')
-        .addClass('footer')
-        .append(footCell);
+  // if (!data.responded) {
+  //   var instructImg = $('<img />')
+  //       .attr({
+  //         'src': '//hangoutsapi.appspot.com/static/yesnomaybe/directions.png',
+  //         'title': 'Make a selection'
+  //       });
+  //   var instructText = $('<div />')
+  //       .text('Click an option to cast your vote');
+  //   var footDiv = $('<div />').append(instructImg, instructText);
+  //   var footCell = $('<td colspan="3" />')
+  //       .append(footDiv);
+  //   var footRow = $('<tr />')
+  //       .attr('id', 'footer')
+  //       .addClass('footer')
+  //       .append(footCell);
 
-    table.append(footRow);
-  }
+  //   table.append(footRow);
+  // }
 
   return table;
 }
