@@ -928,6 +928,10 @@ function createDay(data) {
       createParticipantElement(player, numVotes)
         .click(function(){
           console.log('LYNCHVOTE CLICKED');
+          console.log('SAVING LYNCHVOTE OF');
+          console.log(myId);
+          console.log('AS');
+          console.log(player.id);
           saveValue(makeUserKey(myId, 'lynchvote'), player.id);
         }));
     lynchVotes[player.id] = numVotes;
