@@ -790,7 +790,7 @@ function createNight(data) {
 
 //test
 function startGame() {
-  var numSpies = spiesRemaining = Math.floor(participants_.length /*/ 2*/);
+  var numSpies = spiesRemaining = Math.floor(participants_.length / 2);
   var numCivs = participants_.length - numSpies;
   console.log(participants_.length);
   console.log(numSpies);
