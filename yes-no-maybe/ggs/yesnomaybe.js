@@ -764,7 +764,7 @@ function createParticipantElement(participant, response) {
 
   var name = $('<h2 />').text(participant.person.displayName);
 
-  var statusText = role;
+  var statusText = response;
 //  var statusText = getStatusMessage(participant.id) || '';
   var statusAnchor = $('<p />')
       .addClass('status-anchor')
