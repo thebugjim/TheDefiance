@@ -673,11 +673,19 @@ function createSplash(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    if (player.id == myId)
+    if (player.id == myId && getState(makeUserKey(myId, 'role')) 
+      == ROLES.CIVILIAN)
       respondList.append(
         createParticipantElement(
           player, getState(
             makeUserKey(myId, 'role'))));
+    if (getState(makeUserKey(myId, 'role')) == ROLES.SPY && 
+      getState(makeUserKey(player.id, 'role')) == ROLES.SPY)
+    {
+      respondList.append(
+        createParticipantElement(
+          player, ROLES.SPY))
+    }
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -735,13 +743,17 @@ function createNight(data) {
             .text('civilian: ?????');
           respondList.append(nextCiv);     
         }
-     
+      } else if (playerRole == ROLES.SPY) {
+        var nextCiv = $('<li />')
+          .text('spy: ?????');
+        respondList.append(nextCiv);
       }
     } else if (myRole == ROLES.SPY) {
-      if (playerRole == ROLES.SPY) {
+      if (playerRole == ROLES.CIVILIAN) {
+
         respondList.append(
-          createParticipantElement(
-            player, playerRole));
+          createParticipantElement(player, playerRole)
+            .click(saveValue(makeUserKey(player.id, 'votes')));
       }
     }
   }
@@ -773,7 +785,7 @@ function createNight(data) {
 
 //test
 function startGame() {
-  var numSpies = spiesRemaining = Math.floor(participants_.length / 2);
+  var numSpies = spiesRemaining = Math.floor(participants_.length /*/ 2*/);
   var numCivs = participants_.length - numSpies;
   console.log(participants_.length);
   console.log(numSpies);
