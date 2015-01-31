@@ -722,16 +722,11 @@ function createNight(data) {
 
   var myId = getUserHangoutId();
   var myRole = getState(makeUserKey(myId, 'role'));
-  console.log('myId');
-  console.log(myId);
-  console.log('myRole');
-  console.log(myRole);
 
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     var playerRole = getState(makeUserKey(player.id, 'role'));
-      console.log(playerRole);
     if (myRole == ROLES.CIVILIAN) {
       if (playerRole == ROLES.CIVILIAN) {
         if (myId == player.id) {
@@ -750,10 +745,20 @@ function createNight(data) {
       }
     } else if (myRole == ROLES.SPY) {
       if (playerRole == ROLES.CIVILIAN) {
+        for (var j = 0, jLen = participants_.length; j < jLen; ++j)
+        {
+          var numVotes = 0;
+          var innerid = participants_[j].id;
+          if(getState(makeUserKey(innerid, 'role')) == ROLES.SPY &&
+            getState(makeUserKey(innerid, 'killvote')) == player.id)
+          {
+            numVotes++;
+          }
 
+        }
         respondList.append(
-          createParticipantElement(player, playerRole)
-            .click(saveValue(makeUserKey(player.id, 'votes'))));
+          createParticipantElement(player, numVotes)
+            .click(saveValue(makeUserKey(myId, 'killvote')), player.id));
       }
     }
   }
