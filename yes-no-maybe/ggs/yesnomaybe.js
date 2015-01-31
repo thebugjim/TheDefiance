@@ -729,11 +729,14 @@ function createSplash(data) {
 }
 
 function createNight(data) {
-  var titleRow = createTitleRow("It's nighttime.");
   var buttonRow = $('<tr />');
 
   var myId = getUserHangoutId();
   var myRole = getState(makeUserKey(myId, 'role'));
+
+  var title = myRole == ROLES.SPY ? "It's nighttime. Pick a civilian to kill." :
+  "It's nighttime. Standby."
+  var titleRow = createTitleRow(title);
 
   var respondList = $('<ul />');
   var killVotes = [];
