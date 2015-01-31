@@ -388,7 +388,6 @@ function render() {
       .append(createAnswersTable(data));
 
   container_
-      .empty()
       .append(createTestTable(data));
 }
 
