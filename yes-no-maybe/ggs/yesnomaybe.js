@@ -404,7 +404,8 @@ function render() {
         .append(createSplash(data));
   } else if (currentState == STATES.NIGHT) {
     container_
-        .empty();
+        .empty()
+        .append(createNight(data));
   }
 
   // Sort by vote order.
@@ -704,6 +705,56 @@ function createSplash(data) {
   window.setTimeout(function() {
     saveValue('state', STATES.NIGHT);
   }, 10000);
+
+  return table;
+}
+
+function createNight(data) {
+  var buttonRow = $('<tr />');
+
+  var myId = getUserHangoutId();
+  var myRole = getState(makeUserKey(myId, 'role'));
+
+  var respondList = $('<ul />');
+  for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
+    var player = participants_[i];
+    var playerRole = getState(makeUserKey(player.id));
+    if (myRole == ROLES.CIVILIAN) {
+      if (playerRole == ROLES.CIVILIAN) {
+        var nextCiv = $('<li />')
+          .text('civilian: ?????');
+        respondList.append(nextCiv);          
+      }
+    } else if (myRole == ROLES.SPY) {
+      if (playerRole == ROLES.SPY) {
+        respondList.append(
+          createParticipantElement(
+            player, playerRole))));
+      }
+    }
+  }
+  var ansCell = $('<td />')
+      .append(respondList);
+
+  // var ansLink = $('<a />')
+  //     .attr('href', '#')
+  //     .text('Start Game')
+  //     .click(startGame);
+  // var ansBtn = $('<div />')
+  //     .addClass('button')
+  //     .append(ansLink);
+      //.mousedown(onButtonMouseDown)
+      //.mouseup(getButtonMouseUpHandler(ans));
+
+  buttonRow.append(ansCell);
+
+  var table = $('<table />')
+      .attr({
+        'cellspacing': '2',
+        'cellpadding': '0',
+        'summary': '',
+        'width': '100%'
+      }).append(buttonRow);
 
   return table;
 }
