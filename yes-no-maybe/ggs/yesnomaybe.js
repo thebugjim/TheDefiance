@@ -732,7 +732,7 @@ function createSplash(data) {
 
   window.setTimeout(function() {
     saveValue('state', STATES.NIGHT);
-  }, 10000);
+  }, 8000);
 
   return table;
 }
@@ -743,6 +743,7 @@ function createNight(data) {
 
   var myId = getUserHangoutId();
   var myRole = getState(makeUserKey(myId, 'role'));
+
 
   var title = '';
   var nextlynched = getState("nextlynched");
@@ -786,10 +787,18 @@ function createNight(data) {
         for (var j = 0, jLen = participants_.length; j < jLen; ++j)
         {
           var innerid = participants_[j].id;
-      console.log(getState(makeUserKey(innerid, 'killvote')));
+      console.log('SHOULD BE CIVILIAN');
       console.log(player.id);
+      console.log('MY ID IS');
+      console.log(myId);
+      console.log('ROLE OF INNER IS');
       console.log(getState(makeUserKey(innerid, 'role')));
       console.log(ROLES.SPY);
+      console.log('IF SPY SPY, THE KILLVOTE IS');
+      console.log(getState(makeUserKey(innerid, 'killvote')));
+      console.log('SHOULD BE SAME AS');
+      console.log(player.id);
+      
           if(getState(makeUserKey(innerid, 'role')) == ROLES.SPY &&
             getState(makeUserKey(innerid, 'killvote')) == player.id)
           {
@@ -807,7 +816,6 @@ function createNight(data) {
             .click(function(){
               console.log('KILLVOTE CLICKED');
               saveValue(makeUserKey(myId, 'killvote'), player.id);
-              render();
             }));
         killVotes[player.id] = numVotes;
       }
@@ -854,7 +862,7 @@ function createNight(data) {
       }
     }
     saveValue('state', STATES.DAY);
-  }, 10000);
+  }, 15000);
   timeouts[timer] = timer;
 
   return table;
@@ -947,7 +955,7 @@ function createDay(data) {
       }
     }
     saveValue('state', STATES.NIGHT);
-  }, 8000);
+  }, 15000);
   timeouts[timer] = timer;
 
   return table;
