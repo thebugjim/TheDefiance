@@ -874,7 +874,7 @@ function createDay(data) {
     {
       var innerid = participants_[j].id;
       if(getState(makeUserKey(innerid, 'lynchvote')) == player.id
-        && getState(makeUserKey(innerid, 'role' != ROLES.DEAD)))
+        && getState(makeUserKey(innerid, 'role')) != ROLES.DEAD)
       {
         numVotes++;
       }
