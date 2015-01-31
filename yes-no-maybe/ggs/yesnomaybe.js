@@ -383,15 +383,13 @@ function render() {
     }
   }
 
-  //test
-  var tester = $('<input />');
-
   container_
       .empty()
       .append(createAnswersTable(data));
 
   container_
-      .append(tester);
+      .empty()
+      .append(createTestTable(data));
 }
 
 /**
@@ -521,6 +519,89 @@ function createAnswersTable(data) {
       buttonRow.append(ansCell);
     }
   }
+
+  var table = $('<table />')
+      .attr({
+        'cellspacing': '2',
+        'cellpadding': '0',
+        'summary': '',
+        'width': '100%'
+      }).append(buttonRow);
+
+  if (!data.responded) {
+    var instructImg = $('<img />')
+        .attr({
+          'src': '//hangoutsapi.appspot.com/static/yesnomaybe/directions.png',
+          'title': 'Make a selection'
+        });
+    var instructText = $('<div />')
+        .text('Click an option to cast your vote');
+    var footDiv = $('<div />').append(instructImg, instructText);
+    var footCell = $('<td colspan="3" />')
+        .append(footDiv);
+    var footRow = $('<tr />')
+        .attr('id', 'footer')
+        .addClass('footer')
+        .append(footCell);
+
+    table.append(footRow);
+  }
+
+  return table;
+}
+
+function createTestTable(data) {
+  var buttonRow = $('<tr />');
+
+  var onButtonMouseDown = function() {
+    $(this).addClass('selected');
+  };
+  var getButtonMouseUpHandler = function(ans) {
+    return function() {
+      $(this).removeClass('selected');
+      onAnswer(ans);
+    };
+  };
+  for (var player in gapi.hangout.getParticipants()) {
+    var tester = $('<div />')
+      .test(player.person.displayName);
+
+    buttonRow.append(tester);
+  }
+
+  // // Create buttons for each possible response.
+  // for (var key in Answers) {
+  //   if (Answers.hasOwnProperty(key)) {
+  //     var ans = Answers[key];
+
+  //     var numAnswered = $('<span />')
+  //         .text(' (' + data[ans].length + ')');
+  //     var ansLink = $('<a />')
+  //         .attr('href', '#')
+  //         .text(DEFAULT_STATUS[ans])
+  //         .append(numAnswered)
+  //         .click(function() {
+  //           return false;
+  //         });
+  //     var ansBtn = $('<div />')
+  //         .addClass('button')
+  //         .append(ansLink)
+  //         .mousedown(onButtonMouseDown)
+  //         .mouseup(getButtonMouseUpHandler(ans));
+
+  //     var respondList = $('<ul />');
+  //     for (var i = 0, iLen = data[ans].length; i < iLen; ++i) {
+  //       respondList.append(createParticipantElement(data[ans][i], ans));
+  //     }
+
+  //     var ansCell = $('<td />')
+  //         .attr('id', key)
+  //         .append(ansBtn, respondList);
+
+  //     // Add list of participants below each button.
+  //     buttonRow.append(ansCell);
+  //   }
+  // }
 
   var table = $('<table />')
       .attr({
