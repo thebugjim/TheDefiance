@@ -910,6 +910,7 @@ function createDay(data) {
     for (var count in lynchVotes) {
       if (lynchVotes[count] == max) {
         saveValue('nextlynched', count);
+        saveValue(makeUserKey(count, 'role'), ROLES.DEAD);
         break;
       }
     }
