@@ -1002,7 +1002,7 @@ function createParticipantElement(participant, response) {
   return $('<li />').append(avatar, name, statusAnchor);
 }
 
-function createTitleRow(String title) {
+function createTitleRow(title) {
   var row = $('<tr />');
   var cell = $('<td />');
   var para = $('<p />')
