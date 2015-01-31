@@ -592,6 +592,7 @@ function createAnswersTable(data) {
 }
 
 function createTestTable(data) {
+  var titleRow = createTitleRow("Welcome to Spies");
   var buttonRow = $('<tr />');
 
   var onButtonMouseDown = function() {
@@ -649,7 +650,7 @@ function createTestTable(data) {
         'cellpadding': '0',
         'summary': '',
         'width': '100%'
-      }).append(buttonRow);
+      }).append(titleRow, buttonRow);
 
   // if (!data.responded) {
   //   var instructImg = $('<img />')
@@ -674,6 +675,7 @@ function createTestTable(data) {
 }
 
 function createSplash(data) {
+  var titleRow = createTitleRow("This is your role");
   var buttonRow = $('<tr />');
 
   var myId = getUserHangoutId();
@@ -716,7 +718,7 @@ function createSplash(data) {
         'cellpadding': '0',
         'summary': '',
         'width': '100%'
-      }).append(buttonRow);
+      }).append(titleRow, buttonRow);
 
   window.setTimeout(function() {
     saveValue('state', STATES.NIGHT);
@@ -726,6 +728,7 @@ function createSplash(data) {
 }
 
 function createNight(data) {
+  var titleRow = createTitleRow("It's nighttime.");
   var buttonRow = $('<tr />');
 
   var myId = getUserHangoutId();
@@ -799,7 +802,7 @@ function createNight(data) {
         'cellpadding': '0',
         'summary': '',
         'width': '100%'
-      }).append(buttonRow);
+      }).append(titleRow, buttonRow);
 
   window.setTimeout(function() {
     var max = -1;
