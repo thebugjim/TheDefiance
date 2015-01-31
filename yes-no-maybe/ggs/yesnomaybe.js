@@ -820,19 +820,14 @@ function createNight(data) {
 }
 
 function createDay(data) {
-  var deadRow = $('<tr />');
-  var deadCell = $('<td />');
-  var deadString
+  var deadString;
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     if (player.id == getState('nextdead')) {
       deadString = player.person.displayName.concat(" died last night.");
     }
   }
-  var deadP = $('<p />')
-    .text(deadString);
-  deadCell.append(deadP);
-  deadRow.append(deadCell);
+  var deadRow = createTitleRow(deadString);
   var buttonRow = $('<tr />');
 
   var myId = getUserHangoutId();
@@ -1005,6 +1000,16 @@ function createParticipantElement(participant, response) {
   }
 
   return $('<li />').append(avatar, name, statusAnchor);
+}
+
+function createTitleRow(String title) {
+  var row = $('<tr />');
+  var cell = $('<td />');
+  var para = $('<p />')
+    .text(title);
+  cell.append(para);
+  row.append(cell);
+  return row;
 }
 
 (function() {
