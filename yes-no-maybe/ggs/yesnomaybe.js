@@ -728,7 +728,7 @@ function createSplash(data) {
 }
 
 function createNight(data) {
-  var titleRow = createTitleRow("It's nighttime.");
+  // var titleRow = createTitleRow("It's nighttime.");
   var buttonRow = $('<tr />');
 
   var myId = getUserHangoutId();
@@ -1006,13 +1006,12 @@ function createParticipantElement(participant, response) {
 }
 
 function createTitleRow(title) {
-  var row = $('<tr />');
-  var cell = $('<td />');
+  
+  
   var para = $('<p />')
     .text(title);
-  cell.append(para);
-  row.append(cell);
-  return row;
+  var cell = $('<td />').append(para);
+  return $('<tr />').append(cell);
 }
 
 (function() {
