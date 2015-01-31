@@ -353,6 +353,9 @@ function render() {
     var answer = getState(answerKey);
     var meta = getMetadata(answerKey);
 
+    // test
+
+
     if (answer && data[answer]) {
       data[answer].push(p);
       if (p.id === myId) {
@@ -562,34 +565,18 @@ function createTestTable(data) {
     };
   };
 
-  for (var player in gapi.hangout.getParticipants()) {
-    console.log("firstLoop");
-    var tester = $('<p />')
-      .text('hi');
-
-
-    buttonRow.append(tester);
+  var respondList = $('<ul />');
+  for (var player in participants_) {
+    respondList.append(createParticipantElement(play, Answers.YES));
   }
+  var ansCell = $('<td />')
+      .append(respondList);
+  buttonRow.append(ansCell);
 
   // // Create buttons for each possible response.
   // for (var key in Answers) {
   //   if (Answers.hasOwnProperty(key)) {
   //     var ans = Answers[key];
-
-  //     var numAnswered = $('<span />')
-  //         .text(' (' + data[ans].length + ')');
-  //     var ansLink = $('<a />')
-  //         .attr('href', '#')
-  //         .text(DEFAULT_STATUS[ans])
-  //         .append(numAnswered)
-  //         .click(function() {
-  //           return false;
-  //         });
-  //     var ansBtn = $('<div />')
-  //         .addClass('button')
-  //         .append(ansLink)
-  //         .mousedown(onButtonMouseDown)
-  //         .mouseup(getButtonMouseUpHandler(ans));
 
   //     var respondList = $('<ul />');
   //     for (var i = 0, iLen = data[ans].length; i < iLen; ++i) {
