@@ -348,6 +348,7 @@ function render() {
     return;
   }
 
+  console.log(getState('state'));
   currentState = getState('state');
 
   var data = {
