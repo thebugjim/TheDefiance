@@ -42,6 +42,7 @@ var STATES = {
   LOBBY: 'lobby'
 };
 var currentState = STATES.LOBBY;
+var spiesRemaining;
 
 /**
  * The maximum length allowed for user status.
@@ -593,6 +594,7 @@ function createTestTable(data) {
   var ansBtn = $('<div />')
       .addClass('button')
       .append(ansLink);
+      .click(startGame);
       //.mousedown(onButtonMouseDown)
       //.mouseup(getButtonMouseUpHandler(ans));
 
@@ -645,6 +647,47 @@ function createTestTable(data) {
   // }
 
   return table;
+}
+
+//test
+function startGame() {
+  var numSpies = spiesRemaining = participants_.length / 3;
+  var numCivs = participants_.length - numSpies;
+  for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
+    // var p = participants_[i];
+    // // Temporary id, corresponds to getUserHangoutId().
+    // var answerKey = makeUserKey(p.id, 'answer');
+    // var answer = getState(answerKey);
+    // var meta = getMetadata(answerKey);
+
+    // // test
+
+
+    // if (answer && data[answer]) {
+    //   data[answer].push(p);
+    //   if (p.id === myId) {
+    //     data.responded = true;
+    //   }
+    //   ++data.total;
+
+    //   var name = p.person.displayName;
+    //   var parts = name.split('@');
+    //   if (parts && parts.length > 1) {
+    //     p.person.displayName = parts[0];
+    //   }
+
+    //   p.status = getStatusMessage(p.id) || '';
+    //   // The server stores a timestamp for us on each change. We'll use this
+    //   // value to display users in the order in which they answer.
+    //   p.sortOrder = meta.timestamp;
+    // }
+  }
+
+  var tester = $('<p />')
+    .text('starting');
+  container_
+      .empty()
+      .append(tester);
 }
 
 /**
