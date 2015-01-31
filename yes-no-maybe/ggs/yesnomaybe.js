@@ -799,8 +799,8 @@ function createNight(data) {
       console.log('SHOULD BE SAME AS');
       console.log(player.id);
       
-          if(getState(makeUserKey(innerid, 'role')) == ROLES.SPY &&
-            getState(makeUserKey(innerid, 'killvote')) == player.id)
+          if(getState(makeUserKey(innerid, 'role')) === ROLES.SPY &&
+            getState(makeUserKey(innerid, 'killvote')) === player.id)
           {
             numVotes++;
             console.log('NUMVOTES INCREASED');
@@ -819,7 +819,7 @@ function createNight(data) {
               console.log(myId);
               console.log('VOTING FOR');
               console.log(player.id);
-              saveValue(makeUserKey(player.id, 'killvote'), myId);
+              saveValue(makeUserKey(myId, 'killvote'), player.id);
             }));
         killVotes[player.id] = numVotes;
       }
@@ -911,8 +911,8 @@ function createDay(data) {
       console.log('THE LYNCH VOTE IS');
       console.log(getState(makeUserKey(innerid, 'lynchvote')));
       
-      if(getState(makeUserKey(innerid, 'lynchvote')) == player.id
-        && getState(makeUserKey(innerid, 'role')) != ROLES.DEAD)
+      if(getState(makeUserKey(innerid, 'lynchvote')) === player.id
+        && getState(makeUserKey(innerid, 'role')) !== ROLES.DEAD)
       {
         numVotes++;
         console.log('LYNCHNUMVOTES INCREASED');
