@@ -701,7 +701,7 @@ function createSplash(data) {
         'width': '100%'
       }).append(buttonRow);
 
-  window.setTimeout(saveValue('state', STATES.NIGHT), 10*1000);
+  window.setTimeout(saveValue('state', STATES.NIGHT), 10000);
 
   return table;
 }
