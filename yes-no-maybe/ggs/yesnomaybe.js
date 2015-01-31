@@ -736,6 +736,7 @@ function startGame() {
     // }
   }
   currentState = STATES.SPLASH;
+  saveValue('state', currentState);
   render();
 }
 
@@ -804,6 +805,8 @@ function createParticipantElement(participant, response) {
             updateLocalParticipantsData(initParticipants);
           }
         }
+        currentState = getState('state');
+        render();
 
         gapi.hangout.onApiReady.remove(initHangout);
       }
