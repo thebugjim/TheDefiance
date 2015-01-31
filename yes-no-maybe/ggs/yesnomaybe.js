@@ -729,7 +729,7 @@ function createNight(data) {
       if (playerRole == ROLES.SPY) {
         respondList.append(
           createParticipantElement(
-            player, playerRole))));
+            player, playerRole));
       }
     }
   }
