@@ -564,9 +564,8 @@ function createTestTable(data) {
 
   for (var player in gapi.hangout.getParticipants()) {
     console.log("firstLoop");
-    var tester = $('<div />')
+    var tester = $('<p />')
       .text('hi');
-    console.log(player.person.displayName);
 
 
     buttonRow.append(tester);
