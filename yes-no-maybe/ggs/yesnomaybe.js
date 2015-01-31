@@ -753,7 +753,7 @@ function createNight(data) {
 
         respondList.append(
           createParticipantElement(player, playerRole)
-            .click(saveValue(makeUserKey(player.id, 'votes')));
+            .click(saveValue(makeUserKey(player.id, 'votes'))));
       }
     }
   }
