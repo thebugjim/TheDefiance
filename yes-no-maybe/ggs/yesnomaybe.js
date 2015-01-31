@@ -828,6 +828,7 @@ function createDay(data) {
     if (player.id == getState('nextdead')) {
       deadString = player.person.displayName.concat(" died last night.");
     }
+  }
   var deadP = $('<p />')
     .text(deadString);
   deadCell.append(deadP);
