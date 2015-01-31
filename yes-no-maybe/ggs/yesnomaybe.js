@@ -618,7 +618,7 @@ function createTestTable(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    respondList.append(createParticipantElement(player, 'hi9e'));
+    respondList.append(createParticipantElement(player, 'hi3'));
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -828,7 +828,7 @@ function createNight(data) {
               console.log('VOTING FOR');
               console.log(testId);
               saveValue(makeUserKey(myId, 'killvote'), testId);
-            })(player.id));
+            })(player.id)));
             // .bind("click",(function(testId){
             //   console.log('KILLVOTE CLICKED');
             //   console.log('I AM');
@@ -949,7 +949,7 @@ function createDay(data) {
           console.log('VOTING FOR');
           console.log(testId);
           saveValue(makeUserKey(myId, 'lynchvote'), testId);
-        })(player.id));
+        })(player.id)));
         // .bind("click",(function(testId){
         //   console.log('LYNCHVOTE CLICKED');
         //   console.log('I AM');
