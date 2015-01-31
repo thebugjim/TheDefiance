@@ -489,7 +489,6 @@ function prepareAppDOM() {
       .addClass('status-box')
       .append(statusForm_);
 
-
   statusForm_.submit(function() {
     onSubmitStatus();
     return false;
@@ -786,17 +785,15 @@ function createNight(data) {
         for (var j = 0, jLen = participants_.length; j < jLen; ++j)
         {
           var innerid = participants_[j].id;
-          var innerRole = getState(makeUserKey(innerid, 'role'));
-      //Aaron's console logs
-      /*console.log(getState(makeUserKey(innerid, 'killvote')));
+      console.log(getState(makeUserKey(innerid, 'killvote')));
       console.log(player.id);
       console.log(getState(makeUserKey(innerid, 'role')));
-      console.log(ROLES.SPY);*/
-          if(innerRole) == ROLES.SPY &&
+      console.log(ROLES.SPY);
+          if(getState(makeUserKey(innerid, 'role')) == ROLES.SPY &&
             getState(makeUserKey(innerid, 'killvote')) == player.id)
           {
             numVotes++;
-            //console.log('click12');
+            console.log('click12');
           }
 
           // respondList.append(
@@ -808,7 +805,7 @@ function createNight(data) {
           createParticipantElement(player, numVotes)
             .click(function(){
               saveValue(makeUserKey(myId, 'killvote'), player.id);
-              //console.log('click1');
+              console.log('click1');
             }));
         killVotes[player.id] = numVotes;
       }
@@ -882,19 +879,21 @@ function createDay(data) {
     for (var j = 0, jLen = participants_.length; j < jLen; ++j)
     {
       var innerid = participants_[j].id;
-      //AARONS CONSOLE LOG COMMENTS
       /*console.log(getState(makeUserKey(innerid, 'lynchvote')))
       console.log(player.id);
       console.log(getState(makeUserKey(innerid, 'role')))
       console.log(ROLES.DEAD);*/
-      console.log('IS THERE A KILLVOTE????')
-      console.log(player.id);
+      if(getStater(makeUserKey(innerid, 'roler')) == ROLES.SPY)
+      {
+        console.log(player.id);
+      console.log('CHECKING THE KILLVOTE THING')
       console.log(getState(makeUserKey(innerid, 'killvote')));
+      }
       if(getState(makeUserKey(innerid, 'lynchvote')) == player.id
         && getState(makeUserKey(innerid, 'role')) != ROLES.DEAD)
       {
         numVotes++;
-        //console.log('click22');
+        console.log('click22');
       }
 
       // respondList.append(
@@ -906,7 +905,7 @@ function createDay(data) {
       createParticipantElement(player, numVotes)
         .click(function(){
           saveValue(makeUserKey(myId, 'lynchvote'), player.id);
-          //console.log('click2');
+          console.log('click2');
         }));
     lynchVotes[player.id] = numVotes;
   }
