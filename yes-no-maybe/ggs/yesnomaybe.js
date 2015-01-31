@@ -563,7 +563,7 @@ function createTestTable(data) {
   };
   for (var player in gapi.hangout.getParticipants()) {
     var tester = $('<div />')
-      .test(player.person.displayName);
+      .text(player.person.displayName);
 
     buttonRow.append(tester);
   }
