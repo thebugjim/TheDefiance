@@ -42,7 +42,8 @@ var STATES = {
   LOBBY: 'lobby',
   SPLASH: 'splash',
   NIGHT: 'night',
-  DAY: 'day'
+  DAY: 'day', 
+  DONE: 'done'
 };
 var currentState = STATES.LOBBY;
 var ROLES = {
@@ -422,8 +423,10 @@ function render() {
     container_
         .empty()
         .append(createDay(data));
-                
-
+  } else if (currentState == STATES.DONE) {
+    container_
+        .empty()
+        .append(createDone(data));
   }
 
   // Sort by vote order.
@@ -738,6 +741,10 @@ function createSplash(data) {
 }
 
 function createNight(data) {
+  if (!spiesRemaining || !civsRemaining) {
+    saveValue('state', STATES.DONE);
+  }
+
   console.log('NIGHT FUNCTION STARTED');
   var buttonRow = $('<tr />');
 
@@ -892,6 +899,10 @@ function createNight(data) {
 }
 
 function createDay(data) {
+  if (!spiesRemaining || !civsRemaining) {
+    saveValue('state', STATES.DONE);
+  }
+
   console.log('DAY STARTED');
   var deadString;
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
@@ -1007,9 +1018,50 @@ function createDay(data) {
   return table;
 }
 
+function createDone(data) {
+  var title = civsRemaining ? "Civilians win!" : "Spies win!";
+  var titleRow = createTitleRow(title);
+  var buttonRow = $('<tr />');
+
+  var onButtonMouseDown = function() {
+    $(this).addClass('selected');
+  };
+  var getButtonMouseUpHandler = function(ans) {
+    return function() {
+      $(this).removeClass('selected');
+      onAnswer(ans);
+    };
+  };
+
+  var respondList = $('<ul />');
+  for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
+    var player = participants_[i];
+    respondList.append(createParticipantElement(player, getState(
+        makeUserKey(player.id, 'role'))));
+  }
+  var ansCell = $('<td />')
+      .append(respondList);
+
+  buttonRow.append(ansCell);
+
+
+  var table = $('<table />')
+      .attr({
+        'cellspacing': '2',
+        'cellpadding': '0',
+        'summary': '',
+        'width': '100%'
+      }).append(titleRow, buttonRow);
+
+
+  return table;
+}
+
 //test
 function startGame() {
-  var numSpies = spiesRemaining = Math.floor(participants_.length / 2);
+  var numSpies = spiesRemaining = 
+    participants_.length < 6 ?
+      1 : Math.floor(Math.sqrt(participants_.length));
   var numCivs = participants_.length - numSpies;
   var shuffled_ = shuffle(participants_);
   for (var i = 0, iLen = shuffled_.length; i < iLen; ++i) {
@@ -1093,6 +1145,24 @@ function createTitleRow(title) {
     .text(title);
   var cell = $('<td />').append(para);
   return $('<tr />').append(cell);
+}
+
+function spiesRemaining() {
+  for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
+    var player = participants_[i];
+    var playerRole = getState(makeUserKey(player.id, 'role'));
+    if (playerRole == ROLES.SPY) return true;
+  }
+  return false;
+}
+
+function civsRemaining() {
+  for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
+    var player = participants_[i];
+    var playerRole = getState(makeUserKey(player.id, 'role'));
+    if (playerRole == ROLES.CIVILIAN) return true;
+  }
+  return false;
 }
 
 (function() {
