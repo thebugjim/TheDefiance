@@ -489,7 +489,9 @@ function prepareAppDOM() {
       .addClass('status-box')
       .append(statusForm_);
 
-  statusForm_.submit(function() {
+//COMMENTED OUT THE SUBMIT STATUS OVER HERE UNDERNATH!
+
+  /*statusForm_.submit(function() {
     onSubmitStatus();
     return false;
   });
@@ -504,7 +506,7 @@ function prepareAppDOM() {
     e.stopPropagation();
   }).mousedown(function(e) {
     e.stopPropagation();
-  }).hide();
+  }).hide();*/
 
   container_ = $('<div />');
 
