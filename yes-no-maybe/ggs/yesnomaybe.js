@@ -728,7 +728,7 @@ function createSplash(data) {
 }
 
 function createNight(data) {
-  // var titleRow = createTitleRow("It's nighttime.");
+  var titleRow = createTitleRow("It's nighttime.");
   var buttonRow = $('<tr />');
 
   var myId = getUserHangoutId();
