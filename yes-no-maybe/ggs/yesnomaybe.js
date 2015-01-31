@@ -39,7 +39,7 @@ DEFAULT_STATUS[Answers.NO] = 'No';
 DEFAULT_STATUS[Answers.MAYBE] = 'Maybe';
 
 var STATES = {
-  LOBBY: 'lobby';
+  LOBBY: 'lobby'
 };
 var currentState = STATES.LOBBY;
 
