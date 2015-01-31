@@ -52,6 +52,8 @@ var ROLES = {
 }
 var spiesRemaining;
 
+var timeouts = [];
+
 /**
  * The maximum length allowed for user status.
  * @const
@@ -355,8 +357,15 @@ function render() {
   if (cloudState === undefined) {
     saveValue('state', STATES.LOBBY);
     currentState = STATES.LOBBY;
-  } else
+  } else {
+    if (currentState != getState) {
+      for (var time in timeouts) {
+        clearTimeout(timeouts[time]);
+      }
+      timeouts = [];
+    }
     currentState = getState('state');
+  }
 
   var data = {
     total: 0,
@@ -819,7 +828,8 @@ function createNight(data) {
         'width': '100%'
       }).append(titleRow, buttonRow);
 
-  window.setTimeout(function() {
+
+  var timer = window.setTimeout(function() {
     var max = -1;
     if (myRole != ROLES.SPY) return;
     for (var count in killVotes) {
@@ -834,6 +844,7 @@ function createNight(data) {
     }
     saveValue('state', STATES.DAY);
   }, 15000);
+  timeouts[timer] = timer;
 
   return table;
 }
@@ -862,7 +873,8 @@ function createDay(data) {
     for (var j = 0, jLen = participants_.length; j < jLen; ++j)
     {
       var innerid = participants_[j].id;
-      if(getState(makeUserKey(innerid, 'lynchvote')) == player.id)
+      if(getState(makeUserKey(innerid, 'lynchvote')) == player.id
+        && getState(makeUserKey(innerid, 'role' != ROLES.DEAD)))
       {
         numVotes++;
       }
@@ -902,7 +914,7 @@ function createDay(data) {
         'width': '100%'
       }).append(deadRow, buttonRow);
 
-  window.setTimeout(function() {
+  var timer = window.setTimeout(function() {
     if (myRole != ROLES.SPY) return;
     var max = -1;
     for (var count in lynchVotes) {
@@ -916,7 +928,8 @@ function createDay(data) {
       }
     }
     saveValue('state', STATES.NIGHT);
-  }, 60000);
+  }, 30000);
+  timeouts[timer] = timer;
 
   return table;
 }
