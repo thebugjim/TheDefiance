@@ -807,6 +807,7 @@ function createNight(data) {
 
   window.setTimeout(function() {
     var max = -1;
+    if (myRole != ROLES.SPY) return;
     for (var count in killVotes) {
       if (killVotes[count] > max) max = killVotes[count];
     }
@@ -907,20 +908,20 @@ function createDay(data) {
         'width': '100%'
       }).append(deadRow, buttonRow);
 
-  window.setTimeout(function() {
-    if (myRole != ROLES.SPY) return;
-    var max = -1;
-    for (var count in killVotes) {
-      if (killVotes[count] > max) max = killVotes[count];
-    }
-    for (var count in killVotes) {
-      if (killVotes[count] == max) {
-        saveValue('nextdead', count);
-        break;
-      }
-    }
-    saveValue('state', STATES.DAY);
-  }, 15000);
+  // window.setTimeout(function() {
+  //   if (myRole != ROLES.SPY) return;
+  //   var max = -1;
+  //   for (var count in killVotes) {
+  //     if (killVotes[count] > max) max = killVotes[count];
+  //   }
+  //   for (var count in killVotes) {
+  //     if (killVotes[count] == max) {
+  //       saveValue('nextdead', count);
+  //       break;
+  //     }
+  //   }
+  //   saveValue('state', STATES.DAY);
+  // }, 15000);
 
   return table;
 }
