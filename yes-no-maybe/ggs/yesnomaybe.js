@@ -40,7 +40,7 @@ DEFAULT_STATUS[Answers.MAYBE] = 'Maybe';
 
 var STATES = {
   LOBBY: 'lobby';
-}
+};
 var currentState = STATES.LOBBY;
 
 /**
