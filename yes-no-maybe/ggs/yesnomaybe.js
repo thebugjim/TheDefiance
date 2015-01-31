@@ -618,7 +618,7 @@ function createTestTable(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    respondList.append(createParticipantElement(player, 'hi'));
+    respondList.append(createParticipantElement(player, 'hi.'));
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -865,6 +865,7 @@ function createNight(data) {
         break;
       }
     }
+    console.log('night timer returned from');
     saveValue('state', STATES.DAY);
   }, 15000);
   timeouts[timer] = timer;
