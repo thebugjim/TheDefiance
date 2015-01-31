@@ -807,6 +807,7 @@ function createNight(data) {
             .click(function(){
               console.log('KILLVOTE CLICKED');
               saveValue(makeUserKey(myId, 'killvote'), player.id);
+              render();
             }));
         killVotes[player.id] = numVotes;
       }
