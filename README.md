@@ -1,6 +1,6 @@
 #Spies
 
-Spies is a Google Hangouts application based on the party game [Mafia](https://en.wikipedia.org/wiki/Mafia_(party_game).
+Spies is a Google Hangouts application based on the party game [Mafia](https://en.wikipedia.org/wiki/Mafia_(party_game)).
 
 
 A Google Hangout is Google's version of a Skype call. It allows participants to video chat and use apps together.
