@@ -54,6 +54,7 @@ var ROLES = {
 var spiesLeft;
 
 var timeouts = [];
+var doneChecker;
 
 /**
  * The maximum length allowed for user status.
@@ -363,6 +364,7 @@ function render() {
     for (var time in timeouts) {
       clearTimeout(timeouts[time]);
     }
+    clearTimeout(doneChecker);
   }
   if (currentState != getState('state')) {
     for (var time in timeouts) {
@@ -625,7 +627,7 @@ function createTestTable(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    respondList.append(createParticipantElement(player, 'helelo'));
+    respondList.append(createParticipantElement(player, 'hello'));
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -1125,7 +1127,7 @@ function startGame() {
       saveValue('state', STATES.DONE);
     }
   }, 3000);
-  timeouts[timer] = timer;
+  doneChecker = timer;
 }
 
 /**
