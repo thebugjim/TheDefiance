@@ -918,7 +918,7 @@ function createNight(data) {
         if(getState('healvote') == count)
         {
           saveValue('nextdead', 'bogusvalue');
-          saveValue('wasHealed', 'count');
+          saveValue('wasHealed', count);
           break;
         }
         saveValue('nextdead', count);
