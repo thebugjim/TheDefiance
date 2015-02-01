@@ -1356,7 +1356,7 @@ function checkAuth(isImmediate) {
   // with a generated one.
   // HOWEVER!  You must go through the process of creating a client id
   // associated with this hangout app in the Google API console.
-  gapi.auth.authorize({client_id: 172653159065-fj8rak04uh1qqn2h03ngaaibdkn1otgo.apps.googleusercontent.com,
+  gapi.auth.authorize({client_id: '172653159065-fj8rak04uh1qqn2h03ngaaibdkn1otgo.apps.googleusercontent.com',
           scope: scopes,
           immediate: isImmediate},
     handleAuthResult);
