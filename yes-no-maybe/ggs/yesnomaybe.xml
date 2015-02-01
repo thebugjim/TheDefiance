@@ -36,7 +36,7 @@
 
   <script src="//hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=1.1"></script>
 
-  <p>Your access token will be automatically retrieved and displayed here.</p>
+  <!-- <p>Your access token will be automatically retrieved and displayed here.</p>
 
   <p><i>Be sure to create an OAuth2 Client ID for your project or this will fail.</i></p>
 
@@ -60,7 +60,7 @@
     // with a generated one.
     // HOWEVER!  You must go through the process of creating a client id
     // associated with this hangout app in the Google API console.
-    gapi.auth.authorize({client_id: '172653159065-45odmaen65fj9uhgjhomthn812tvo2c1.apps.googleusercontent.com',
+    gapi.auth.authorize({client_id: null,
                          scope: scopes,
                          immediate: isImmediate},
                         handleAuthResult);
@@ -93,7 +93,7 @@
     // Note that we load only the auth library, rather than
     // the entire client library.
     gapi.load('auth', onClientReady);
-  </script>
+  </script> -->
 
 
 ]]></Content>
