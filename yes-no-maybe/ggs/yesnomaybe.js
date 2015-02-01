@@ -746,8 +746,22 @@ function createSplash(data) {
     'class': 'spy',
     'src': "//thebugjim.github.io/TheDefiance/yes-no-maybe/static/yesnomaybe/spy.png"
   });
+    var doctorimage = $('<img />').attr({
+    'width': '200',
+    'class': 'doctor',
+    'src': "//thebugjim.github.io/TheDefiance/yes-no-maybe/static/yesnomaybe/doctor.png"
+  });
+      var civilianimage = $('<img />').attr({
+    'width': '200',
+    'class': 'civilian',
+    'src': "//thebugjim.github.io/TheDefiance/yes-no-maybe/static/yesnomaybe/civilian.png"
+  });
 
-  buttonRow.append(ansCell, spyimage);
+  
+  /*SETTING PICTURE FOR THE USER */
+  if(getState(makeUserKey(myId, 'isDoctor')) == 'true')
+      {
+          buttonRow.append(ansCell, doctorimage);
 
   var table = $('<table />')
       .attr({
@@ -756,6 +770,36 @@ function createSplash(data) {
         'summary': '',
         'width': '100%'
       }).append(titleRow, buttonRow);
+      
+      }
+  else if (getState(makeUserKey(myId, 'role')) 
+      == ROLES.CIVILIAN)
+  {
+      buttonRow.append(ansCell, civilianimage);
+
+  var table = $('<table />')
+      .attr({
+        'cellspacing': '2',
+        'cellpadding': '0',
+        'summary': '',
+        'width': '100%'
+      }).append(titleRow, buttonRow);
+
+  }
+  else if (getState(makeUserKey(myId, 'role')) 
+      == ROLES.SPY)
+  {
+      buttonRow.append(ansCell, spyimage);
+
+  var table = $('<table />')
+      .attr({
+        'cellspacing': '2',
+        'cellpadding': '0',
+        'summary': '',
+        'width': '100%'
+      }).append(titleRow, buttonRow);
+  }
+
 
   window.setTimeout(function() {
     saveValue('state', STATES.NIGHT);
