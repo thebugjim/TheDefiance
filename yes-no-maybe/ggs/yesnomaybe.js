@@ -621,7 +621,7 @@ function createTestTable(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    respondList.append(createParticipantElement(player, 'hi3'));
+    respondList.append(createParticipantElement(player, 'hi'));
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -741,9 +741,7 @@ function createSplash(data) {
 }
 
 function createNight(data) {
-  if (!spiesRemaining() || !civsRemaining()) {
-    saveValue('state', STATES.DONE);
-  }
+
 
 
   console.log('NIGHT FUNCTION STARTED');
@@ -907,9 +905,7 @@ function createNight(data) {
 
 
 function createDay(data) {
-  if (!spiesRemaining() || !civsRemaining()) {
-    saveValue('state', STATES.DONE);
-  }
+
 
   var timer = window.setTimeout(function() {
     if (myRole != ROLES.SPY) return;
@@ -1050,7 +1046,7 @@ function createDay(data) {
 }
 
 function createDone(data) {
-  var title = civsRemaining ? "Civilians win!" : "Spies win!";
+  var title = civsRemaining() ? "Civilians win!" : "Spies win!";
   var titleRow = createTitleRow(title);
   var buttonRow = $('<tr />');
 
