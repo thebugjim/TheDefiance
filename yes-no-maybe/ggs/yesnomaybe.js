@@ -627,7 +627,7 @@ function createTestTable(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    respondList.append(createParticipantElement(player, 'hello'));
+    respondList.append(createParticipantElement(player, 'helllo'));
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -1122,12 +1122,14 @@ function startGame() {
   currentState = STATES.SPLASH;
   saveValue('state', currentState);
   render();
-  var timer = window.setInterval(function() {
-    if (!spiesRemaining() || !civsRemaining()) {
-      saveValue('state', STATES.DONE);
-    }
-  }, 3000);
-  doneChecker = timer;
+  window.setTimeout(function() {
+    var timer = window.setInterval(function() {
+      if (!spiesRemaining() || !civsRemaining()) {
+        saveValue('state', STATES.DONE);
+      }
+    }, 1500);
+    doneChecker = timer;
+  }, 10000);
 }
 
 /**
