@@ -1206,7 +1206,7 @@ function startGame() {
  */
 function createParticipantElement(participant, response) {
   var avatar = $('<img />').attr({
-    'width': '40',
+    'width': '27',
     'alt': 'Avatar',
     'class': 'avatar',
     'src': participant.person.image && participant.person.image.url ?
