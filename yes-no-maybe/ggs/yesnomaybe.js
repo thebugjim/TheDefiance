@@ -52,6 +52,7 @@ var ROLES = {
   DEAD: 'ded'
 }
 var spiesLeft;
+var isDoctor;
 
 var timeouts = [];
 var doneChecker;
@@ -777,7 +778,31 @@ function createNight(data) {
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     var playerRole = getState(makeUserKey(player.id, 'role'));
-    if (myRole == ROLES.CIVILIAN) {
+    if(getState(makeUserKey(myId, 'isDoctor')))
+    {
+      //display doctor stuff
+
+      //append player
+
+      //onClick (isHealed) (with closure)
+      //healvote
+      respondList.append(
+          createParticipantElement(player, 
+            getState('healvote') == player.id ?
+            'will be healed' : 'will not be healed');
+            .click((function(testId){
+              return function (ev) {
+                console.log('HEALVOTE CLICKED');
+                console.log('I AM');
+                console.log(myId);
+                console.log('VOTING FOR');
+                console.log(testId);
+                saveValue('healvote', testId);
+              };
+            })(player.id)));
+
+    }
+    else if (myRole == ROLES.CIVILIAN) {
       if (playerRole == ROLES.CIVILIAN) {
         if (myId == player.id) {
           var nextCiv = $('<li />')
@@ -1095,6 +1120,10 @@ function startGame() {
       numSpies--;
     } else {
       role = ROLES.CIVILIAN;
+      if(numCivs == 1)
+      {
+        saveValue(makeUserKey(p.id, 'isDoctor'), true);
+      }
       numCivs--;
     }
     saveValue(makeUserKey(p.id, 'role'), role);
