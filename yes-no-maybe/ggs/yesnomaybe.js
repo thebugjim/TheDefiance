@@ -365,11 +365,10 @@ function render() {
     }
   }
   if (currentState != getState('state')) {
-      for (var time in timeouts) {
-        clearTimeout(timeouts[time]);
-      }
-      timeouts = [];
+    for (var time in timeouts) {
+      clearTimeout(timeouts[time]);
     }
+    timeouts = [];
     currentState = getState('state');
   }
 
