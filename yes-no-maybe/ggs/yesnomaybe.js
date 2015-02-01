@@ -705,10 +705,21 @@ function createSplash(data) {
     var player = participants_[i];
     if (player.id == myId && getState(makeUserKey(myId, 'role')) 
       == ROLES.CIVILIAN)
+    {
+      if(getState(makeUserKey(player.id, 'isDoctor')) == 'true')
+      {
+      respondList.append(
+        createParticipantElement(
+          player, 'doctor'));
+      }
+      else
+      {
       respondList.append(
         createParticipantElement(
           player, getState(
-            makeUserKey(myId, 'role'))));
+            makeUserKey(myId, 'role'))));        
+      }
+    }
     if (getState(makeUserKey(myId, 'role')) == ROLES.SPY && 
       getState(makeUserKey(player.id, 'role')) == ROLES.SPY)
     {
