@@ -631,6 +631,7 @@ function createTestTable(data) {
     respondList.append(createParticipantElement(player, 'hello'));
     respondList.append(createParticipantElement(player, 'hello'));
     respondList.append(createParticipantElement(player, 'hello'));
+    respondList.append(createParticipantElement(player, 'hello'));
   }
   var ansCell = $('<td />')
       .append(respondList);
