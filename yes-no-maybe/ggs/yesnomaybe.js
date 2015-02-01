@@ -1339,7 +1339,7 @@ function shuffle(array) {
 
 // API key from the Google API Console
 // You can leave this as null if you are running inside the gadget.
-var apiKey = null;
+var apiKey = AIzaSyBxoGwcVTJUyX_oMkky4wF44ZD7ztE8Les;
 
 // Lay out the hangout scopes here.
 var scopes = ['https://www.googleapis.com/auth/plus.me',
