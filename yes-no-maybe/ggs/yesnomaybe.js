@@ -763,7 +763,12 @@ function createNight(data) {
   if (nextlynched === undefined) {
     title = myRole == ROLES.SPY ? "It's nighttime. Pick a civilian to kill." :
     "It's nighttime. Standby."
-  } else {
+  }
+    if (getState(makeUserKey(myId, 'isDoctor')) == 'true')
+  {
+    title = "It's nighttime. Pick a player to heal."
+  }
+   else {
     for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
       var player = participants_[i];
       if (player.id == nextlynched) {
