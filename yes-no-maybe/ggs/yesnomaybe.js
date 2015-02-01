@@ -634,7 +634,7 @@ function createTestTable(data) {
 
   var ansLink = $('<a />')
       .attr('href', '#')
-      .text('Start Game')
+      .text('Start')
       .click(startGame);
   var ansBtn = $('<div />')
       .addClass('button')
