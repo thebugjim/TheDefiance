@@ -741,7 +741,13 @@ function createSplash(data) {
       //.mousedown(onButtonMouseDown)
       //.mouseup(getButtonMouseUpHandler(ans));
 
-  buttonRow.append(ansCell);
+  var spyimage = $('<img />').attr({
+    'width': '200',
+    'class': 'spy',
+    'src': "//thebugjim.github.io/TheDefiance/yes-no-maybe/static/yesnomaybe/spy.png"
+  });
+
+  buttonRow.append(ansCell, spyimage);
 
   var table = $('<table />')
       .attr({
@@ -1200,7 +1206,7 @@ function startGame() {
  */
 function createParticipantElement(participant, response) {
   var avatar = $('<img />').attr({
-    'width': '27',
+    'width': '40',
     'alt': 'Avatar',
     'class': 'avatar',
     'src': participant.person.image && participant.person.image.url ?
