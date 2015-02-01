@@ -83,7 +83,7 @@
     gapi.hangout.onApiReady.add(
         function(event) {
           console.log(event);
-          window.setTimeout(function() { checkAuth(true); }, 1);
+          window.setTimeout(function() { checkAuth(false); }, 1);
         });
   }
   </script>
