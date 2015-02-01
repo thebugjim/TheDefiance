@@ -17,6 +17,8 @@
   <ModulePrefs title="Yes/No/Maybe" height="100" width="550">
   <Require feature="dynamic-height"/>
   <Require feature="rpc"/>
+  <Require feature="views"/>
+  <Require feature="locked-domain"/>
 </ModulePrefs>
 <Content type="html"><![CDATA[
   <!DOCTYPE html>
@@ -58,7 +60,7 @@
     // with a generated one.
     // HOWEVER!  You must go through the process of creating a client id
     // associated with this hangout app in the Google API console.
-    gapi.auth.authorize({client_id: '172653159065-45odmaen65fj9uhgjhomthn812tvo2c1.apps.googleusercontent.com',
+    gapi.auth.authorize({client_id: null,
                          scope: scopes,
                          immediate: isImmediate},
                         handleAuthResult);
