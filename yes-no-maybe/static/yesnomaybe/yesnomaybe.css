@@ -26,8 +26,8 @@ body, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, li, ol, p, ul {
 }
 
 body {
-  background-color: #fff;
-  color: #000;
+  background-color: #FE9A2E;
+  color: WHITE;
   line-height: 1.4;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 85%;
@@ -61,9 +61,9 @@ input, select, table, textarea {
 }
 
 td {
-  width: 66.6%;
+  width: 100%;
   padding: 6px;
-  background-color: #F8E0F7;
+  background-color: #FF8000;
   vertical-align: top;
 }
 
@@ -158,8 +158,8 @@ td {
 }
 
 .title {
-  color: purple;
-  font-size: 30px;
+  color: WHITE;
+  font-size: 32px;
   font-weight: bold;
 }
 
@@ -251,4 +251,8 @@ tom-right-radius: 6px;
   text-align: center;
   font-size: 9pt;
   color: gray;
+}
+
+.status-anchor {
+  font-size: 100%
 }
