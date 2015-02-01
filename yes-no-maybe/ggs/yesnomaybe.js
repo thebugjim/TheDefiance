@@ -965,8 +965,7 @@ function createDay(data) {
       deadString = player.person.displayName.concat(" was shot and killed last night. Vote to lynch.");
     }
     else if (player.id == getState('wasHealed')) {
-      deadString = player.person.displayName.concat(" was shot last night. But the doctor saved him!
-       Vote to lynch.");
+      deadString = player.person.displayName.concat(" was shot last night. But the doctor saved him! Vote to lynch.");
     }
 
 
