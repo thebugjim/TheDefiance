@@ -621,7 +621,7 @@ function createTestTable(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    respondList.append(createParticipantElement(player, 'hi3'));
+    respondList.append(createParticipantElement(player, 'hi'));
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -741,7 +741,7 @@ function createSplash(data) {
 }
 
 function createNight(data) {
-  if (!spiesRemaining || !civsRemaining) {
+  if (!spiesRemaining() || !civsRemaining()) {
     saveValue('state', STATES.DONE);
   }
 
@@ -899,9 +899,26 @@ function createNight(data) {
 }
 
 function createDay(data) {
-  if (!spiesRemaining || !civsRemaining) {
+  if (!spiesRemaining() || !civsRemaining()) {
     saveValue('state', STATES.DONE);
   }
+
+  var timer = window.setTimeout(function() {
+    if (myRole != ROLES.SPY) return;
+    var max = -1;
+    for (var count in lynchVotes) {
+      if (lynchVotes[count] > max) max = lynchVotes[count];
+    }
+    for (var count in lynchVotes) {
+      if (lynchVotes[count] == max) {
+        saveValue('nextlynched', count);
+        saveValue(makeUserKey(count, 'role'), ROLES.DEAD);
+        break;
+      }
+    }
+    saveValue('state', STATES.NIGHT);
+  }, 15000);
+  timeouts[timer] = timer;
 
   console.log('DAY STARTED');
   var deadString;
