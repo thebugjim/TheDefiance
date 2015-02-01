@@ -1174,7 +1174,8 @@ function createTitleRow(title) {
   
   
   var para = $('<p />')
-    .text(title);
+    .text(title)
+    .addClass('title');
   var cell = $('<td />').append(para);
   return $('<tr />').append(cell);
 }

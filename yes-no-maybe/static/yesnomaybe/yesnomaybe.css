@@ -157,6 +157,12 @@ td {
   text-shadow: none;
 }
 
+.title {
+  color: purple;
+  font-size: 30px;
+  font-style: bold;
+}
+
 ul {
   margin: 0 6px 0 6px;
   list-style: none;
