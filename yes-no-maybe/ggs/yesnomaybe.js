@@ -628,10 +628,6 @@ function createTestTable(data) {
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     respondList.append(createParticipantElement(player, 'hello'));
-    respondList.append(createParticipantElement(player, 'hello'));
-    respondList.append(createParticipantElement(player, 'hello'));
-    respondList.append(createParticipantElement(player, 'hello'));
-    respondList.append(createParticipantElement(player, 'hello'));
   }
   var ansCell = $('<td />')
       .append(respondList);

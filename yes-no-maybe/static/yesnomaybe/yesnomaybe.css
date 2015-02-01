@@ -26,7 +26,7 @@ body, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, li, ol, p, ul {
 }
 
 body {
-  background-color: #FE9A2E;
+  background-color: #9955C6;
   color: WHITE;
   line-height: 1.4;
   font-family: Helvetica, Arial, sans-serif;
@@ -63,8 +63,9 @@ input, select, table, textarea {
 td {
   width: 100%;
   padding: 6px;
-  background-color: #FF8000;
+  background-color: #50236E;
   vertical-align: top;
+  border-radius: 5px;
 }
 
 #YES {
