@@ -819,7 +819,7 @@ function createNight(data) {
   var myRole = getState(makeUserKey(myId, 'role'));
 
   var title = '';
-  if (getState(makeUserKey(myId, 'role')) == ROLES.CIVILIAN) && getState(makeUserKey(myId, 'isDoctor')) == 'true')
+  if ((getState(makeUserKey(myId, 'role')) == ROLES.CIVILIAN) && getState(makeUserKey(myId, 'isDoctor')) == 'true')
   {
     title = "It's nighttime. Pick a player to heal."
   }
