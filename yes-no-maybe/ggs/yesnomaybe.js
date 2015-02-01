@@ -358,12 +358,13 @@ function render() {
   if (cloudState === undefined) {
     saveValue('state', STATES.LOBBY);
     currentState = STATES.LOBBY;
-  } if (currentState == STATES.LOBBY) {
+  }
+  if (currentState == STATES.LOBBY) {
     for (var time in timeouts) {
       clearTimeout(timeouts[time]);
     }
-  } else {
-    if (currentState != getState) {
+  }
+  if (currentState != getState('state')) {
       for (var time in timeouts) {
         clearTimeout(timeouts[time]);
       }
@@ -625,7 +626,7 @@ function createTestTable(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    respondList.append(createParticipantElement(player, 'hello'));
+    respondList.append(createParticipantElement(player, 'helelo'));
   }
   var ansCell = $('<td />')
       .append(respondList);
