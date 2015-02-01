@@ -30,6 +30,17 @@
   <link type="text/css" rel="stylesheet"
       href="//thebugjim.github.io/TheDefiance/yes-no-maybe/static/yesnomaybe/yesnomaybe.css" />
 
+
+
+    <script src="https://apis.google.com/js/client.js?onload=onClientReady"></script>
+        <p>
+        <button id="authorize-button" style="visibility: hidden">Authorize</button>
+        <button id="token-button" style="visibility: hidden">Show token</button>
+        </p>
+
+    <div id="token-field" style="visibility: hidden">NONE</div>
+
+
 ]]></Content>
 </Module>
 
