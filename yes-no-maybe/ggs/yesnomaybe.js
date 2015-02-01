@@ -358,6 +358,10 @@ function render() {
   if (cloudState === undefined) {
     saveValue('state', STATES.LOBBY);
     currentState = STATES.LOBBY;
+  } if (currentState == STATES.LOBBY) {
+    for (var time in timeouts) {
+      clearTimeout(timeouts[time]);
+    }
   } else {
     if (currentState != getState) {
       for (var time in timeouts) {
@@ -1116,11 +1120,12 @@ function startGame() {
   currentState = STATES.SPLASH;
   saveValue('state', currentState);
   render();
-  window.setInterval(function() {
+  var timer = window.setInterval(function() {
     if (!spiesRemaining() || !civsRemaining()) {
       saveValue('state', STATES.DONE);
     }
   }, 3000);
+  timeouts[timer] = timer;
 }
 
 /**
