@@ -908,22 +908,22 @@ function createNight(data) {
 function createDay(data) {
 
 
-  var timer = window.setTimeout(function() {
-    if (myRole != ROLES.SPY) return;
-    var max = -1;
-    for (var count in lynchVotes) {
-      if (lynchVotes[count] > max) max = lynchVotes[count];
-    }
-    for (var count in lynchVotes) {
-      if (lynchVotes[count] == max) {
-        saveValue('nextlynched', count);
-        saveValue(makeUserKey(count, 'role'), ROLES.DEAD);
-        break;
-      }
-    }
-    saveValue('state', STATES.NIGHT);
-  }, 15000);
-  timeouts[timer] = timer;
+  // var timer = window.setTimeout(function() {
+  //   if (myRole != ROLES.SPY) return;
+  //   var max = -1;
+  //   for (var count in lynchVotes) {
+  //     if (lynchVotes[count] > max) max = lynchVotes[count];
+  //   }
+  //   for (var count in lynchVotes) {
+  //     if (lynchVotes[count] == max) {
+  //       saveValue('nextlynched', count);
+  //       saveValue(makeUserKey(count, 'role'), ROLES.DEAD);
+  //       break;
+  //     }
+  //   }
+  //   saveValue('state', STATES.NIGHT);
+  // }, 15000);
+  // timeouts[timer] = timer;
 
   console.log('DAY STARTED');
   var deadString;
