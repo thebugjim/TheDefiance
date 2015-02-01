@@ -68,11 +68,12 @@
 
   function handleAuthResult(authResult) {
     var tokenButton = document.getElementById('token-button');
+    console.log(authResult);
 
     if (authResult) {
       var div = document.getElementById('token');
 
-      div.innerHTML = '<p>' + authResult.access_token + '</p>';
+      div.innerHTML = '<p>' + gapi.auth.getToken().access_token + '</p>';
     } else {
       console.log('ERROR:  No auth result.');
     }
