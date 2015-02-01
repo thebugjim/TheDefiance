@@ -621,7 +621,7 @@ function createTestTable(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    respondList.append(createParticipantElement(player, 'hi'));
+    respondList.append(createParticipantElement(player, 'hello'));
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -1054,7 +1054,7 @@ function createDone(data) {
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     respondList.append(createParticipantElement(player, getState(
-        makeUserKey(player.id, 'role'))));
+        makeUserKey(player.id, 'originalRole'))));
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -1092,6 +1092,7 @@ function startGame() {
       numCivs--;
     }
     saveValue(makeUserKey(p.id, 'role'), role);
+    saveValue(makeUserKey(p.id, 'originalRole'), role);
 
     // if (answer && data[answer]) {
     //   data[answer].push(p);
