@@ -51,7 +51,7 @@ var ROLES = {
   SPY: 'spy',
   DEAD: 'ded'
 }
-var spiesRemaining;
+var spiesLeft;
 
 var timeouts = [];
 
@@ -1076,7 +1076,7 @@ function createDone(data) {
 
 //test
 function startGame() {
-  var numSpies = spiesRemaining = 
+  var numSpies = spiesLeft = 
     participants_.length < 6 ?
       1 : Math.floor(Math.sqrt(participants_.length));
   var numCivs = participants_.length - numSpies;
