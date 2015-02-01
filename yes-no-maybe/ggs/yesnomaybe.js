@@ -915,8 +915,15 @@ function createNight(data) {
     }
     for (var count in killVotes) {
       if (killVotes[count] == max) {
+        if(getState('healvote') == count)
+        {
+          saveValue('nextdead', 'bogusvalue');
+          saveValue('wasHealed', 'count');
+          break;
+        }
         saveValue('nextdead', count);
         saveValue(makeUserKey(count, 'role'), ROLES.DEAD);
+        saveValue('wasHealed', 'bogusvalue');
         break;
       }
     }
@@ -955,9 +962,16 @@ function createDay(data) {
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     if (player.id == getState('nextdead')) {
-      deadString = player.person.displayName.concat(" died last night. Vote to lynch.");
+      deadString = player.person.displayName.concat(" was shot and killed last night. Vote to lynch.");
     }
+    else if (player.id == getState('wasHealed')) {
+      deadString = player.person.displayName.concat(" was shot last night. But the doctor saved him!
+       Vote to lynch.");
+    }
+
+
   }
+  removeValue('healvote');
   var deadRow = createTitleRow(deadString);
   var buttonRow = $('<tr />');
 
