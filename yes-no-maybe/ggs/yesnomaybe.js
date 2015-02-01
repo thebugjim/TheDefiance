@@ -621,7 +621,7 @@ function createTestTable(data) {
   var respondList = $('<ul />');
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
-    respondList.append(createParticipantElement(player, 'hi'));
+    respondList.append(createParticipantElement(player, 'hi3'));
   }
   var ansCell = $('<td />')
       .append(respondList);
@@ -744,6 +744,7 @@ function createNight(data) {
   if (!spiesRemaining() || !civsRemaining()) {
     saveValue('state', STATES.DONE);
   }
+
 
   console.log('NIGHT FUNCTION STARTED');
   var buttonRow = $('<tr />');
@@ -891,12 +892,19 @@ function createNight(data) {
       }
     }
     console.log('night timer returned from');
+    window.setTimeout(function() {
+      if (!spiesRemaining || !civsRemaining) {
+        saveValue('state', STATES.DONE);
+      }
+    }, 1500);
     saveValue('state', STATES.DAY);
   }, 15000);
   timeouts[timer] = timer;
 
   return table;
 }
+
+
 
 function createDay(data) {
   if (!spiesRemaining() || !civsRemaining()) {
@@ -1028,6 +1036,12 @@ function createDay(data) {
         break;
       }
     }
+    console.log('night timer returned from');
+    window.setTimeout(function() {
+      if (!spiesRemaining || !civsRemaining) {
+        saveValue('state', STATES.DONE);
+      }
+    }, 1500);
     saveValue('state', STATES.NIGHT);
   }, 15000);
   timeouts[timer] = timer;
