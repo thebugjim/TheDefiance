@@ -778,7 +778,7 @@ function createNight(data) {
   for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
     var player = participants_[i];
     var playerRole = getState(makeUserKey(player.id, 'role'));
-    if(getState(makeUserKey(myId, 'isDoctor')))
+    if(getState(makeUserKey(myId, 'isDoctor')) == 'true')
     {
       //display doctor stuff
 
@@ -1122,7 +1122,7 @@ function startGame() {
       role = ROLES.CIVILIAN;
       if(numCivs == 1)
       {
-        saveValue(makeUserKey(p.id, 'isDoctor'), true);
+        saveValue(makeUserKey(p.id, 'isDoctor'), 'true');
       }
       numCivs--;
     }
