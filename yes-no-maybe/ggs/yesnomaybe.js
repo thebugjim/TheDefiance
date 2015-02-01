@@ -833,7 +833,7 @@ function createNight(data) {
     for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
       var player = participants_[i];
       if (player.id == nextlynched) {
-        title = player.person.displayName.concat(" was lynched. It's nighttime.");
+        title = player.person.displayName.concat(" was lynched. They were a ").concat(getState(makeUserKey(player.id, 'originalRole'))).concat(". It is Night time.");
       }
     }
   }
