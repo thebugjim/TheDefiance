@@ -789,7 +789,7 @@ function createNight(data) {
       respondList.append(
           createParticipantElement(player, 
             getState('healvote') == player.id ?
-            'will be healed' : 'will not be healed');
+            'will be healed' : 'will not be healed')
             .click((function(testId){
               return function (ev) {
                 console.log('HEALVOTE CLICKED');
