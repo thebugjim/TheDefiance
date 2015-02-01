@@ -61,9 +61,9 @@ input, select, table, textarea {
 }
 
 td {
-  width: 33.3%;
+  width: 66.6%;
   padding: 6px;
-  background-color: #e7eeda;
+  background-color: #F8E0F7;
   vertical-align: top;
 }
 
@@ -160,7 +160,7 @@ td {
 .title {
   color: purple;
   font-size: 30px;
-  font-style: bold;
+  font-weight: bold;
 }
 
 ul {
