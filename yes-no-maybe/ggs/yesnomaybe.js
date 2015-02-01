@@ -890,11 +890,6 @@ function createNight(data) {
       }
     }
     console.log('night timer returned from');
-    window.setTimeout(function() {
-      if (!spiesRemaining || !civsRemaining) {
-        saveValue('state', STATES.DONE);
-      }
-    }, 1500);
     saveValue('state', STATES.DAY);
   }, 15000);
   timeouts[timer] = timer;
@@ -1033,11 +1028,6 @@ function createDay(data) {
       }
     }
     console.log('night timer returned from');
-    window.setTimeout(function() {
-      if (!spiesRemaining || !civsRemaining) {
-        saveValue('state', STATES.DONE);
-      }
-    }, 1500);
     saveValue('state', STATES.NIGHT);
   }, 15000);
   timeouts[timer] = timer;
@@ -1125,6 +1115,11 @@ function startGame() {
   currentState = STATES.SPLASH;
   saveValue('state', currentState);
   render();
+  window.setInterval(function() {
+    if (!spiesRemaining() || !civsRemaining()) {
+      saveValue('state', STATES.DONE);
+    }
+  }, 3000);
 }
 
 /**
