@@ -818,18 +818,17 @@ function createNight(data) {
   var myId = getUserHangoutId();
   var myRole = getState(makeUserKey(myId, 'role'));
 
-
   var title = '';
+  if (getState(makeUserKey(myId, 'role')) == ROLES.CIVILIAN) && getState(makeUserKey(myId, 'isDoctor')) == 'true')
+  {
+    title = "It's nighttime. Pick a player to heal."
+  }
   var nextlynched = getState("nextlynched");
   if (nextlynched === undefined) {
     title = myRole == ROLES.SPY ? "It's nighttime. Pick a civilian to kill." :
     "It's nighttime. Standby."
   }
-    if (getState(makeUserKey(myId, 'isDoctor')) == 'true')
-  {
-    title = "It's nighttime. Pick a player to heal."
-  }
-   else {
+  else {
     for (var i = 0, iLen = participants_.length; i < iLen; ++i) {
       var player = participants_[i];
       if (player.id == nextlynched) {
